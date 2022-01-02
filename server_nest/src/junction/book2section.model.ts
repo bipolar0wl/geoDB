@@ -1,4 +1,5 @@
 import {
+  BelongsToMany,
   Column,
   DataType,
   ForeignKey,
@@ -11,13 +12,6 @@ import { User } from 'src/users/models/user.model';
 
 @Table({ tableName: `role2user`, createdAt: false, updatedAt: false })
 export class role2user extends Model {
-  // @Column({
-  //   type: DataType.INTEGER,
-  //   unique: true,
-  //   autoIncrement: true,
-  //   primaryKey: true,
-  // })
-  // id: number;
 
   @PrimaryKey
   @ForeignKey(() => Role)

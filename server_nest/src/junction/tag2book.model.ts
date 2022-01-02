@@ -9,15 +9,8 @@ import {
 import { Role } from 'src/roles/models/role.model';
 import { User } from 'src/users/models/user.model';
 
-@Table({ tableName: `role2user`, createdAt: false, updatedAt: false })
-export class role2user extends Model {
-  // @Column({
-  //   type: DataType.INTEGER,
-  //   unique: true,
-  //   autoIncrement: true,
-  //   primaryKey: true,
-  // })
-  // id: number;
+@Table({ tableName: `tag2book`, createdAt: false, updatedAt: false })
+export class tag2book extends Model {
 
   @PrimaryKey
   @ForeignKey(() => Role)
