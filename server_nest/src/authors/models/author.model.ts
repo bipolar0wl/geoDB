@@ -1,26 +1,25 @@
-import { ApiProperty } from '@nestjs/swagger';
-import { Column, DataType, Model, Table } from 'sequelize-typescript';
+import { ApiProperty, ApiTags } from '@nestjs/swagger';
+import {
+  BelongsToMany,
+  Column,
+  DataType,
+  Model,
+  Table,
+} from 'sequelize-typescript';
+import { Book } from 'src/books/models/book.model';
+import { author2book } from 'src/junction/author2book.model';
 
-interface authorCreationAttributes {
-  name: string;
-}
-
-@Table({ tableName: `authors`})
+@ApiTags(`Авторы`)
+@Table({ tableName: `authors` })
 export class Author extends Model {
-  @ApiProperty({example: `1`, description: `Уникальный идентификатор`})
-  @Column({
-    type: DataType.INTEGER,
-    unique: true,
-    autoIncrement: true,
-    primaryKey: true,
-  })
-  id: number;
-
-  @ApiProperty({example: `Путин В.В.`, description: `ФИО автора`})
+  @ApiProperty({ example: `Путин В.В.`, description: `ФИО автора` })
   @Column({
     type: DataType.STRING,
     allowNull: false,
     unique: true,
   })
   Author: string;
+
+  @BelongsToMany(() => Book, () => author2book)
+  books: Book[];
 }

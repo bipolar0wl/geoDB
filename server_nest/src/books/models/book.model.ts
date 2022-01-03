@@ -1,8 +1,22 @@
+import { Texture } from './../../textures/models/texture.model';
+import { Substance } from './../../substance/models/substance.model';
+import { Structure } from './../../structures/models/structure.model';
+import { Section } from './../../sections/models/section.model';
+import { Sample } from './../../samples/models/sample.model';
+import { book2texture } from './../../junction/book2texture.model';
+import { book2substance } from './../../junction/book2substance.model';
+import { book2structure } from './../../junction/book2structure.model';
+import { book2section } from './../../junction/book2section.model';
+import { book2sample } from './../../junction/book2sample.model';
+import { book2mineral } from './../../junction/book2mineral.model';
+import { LangType } from './../../lang-types/models/lang-type.model';
 import { ApiProperty, ApiTags } from '@nestjs/swagger';
 import {
+  BelongsTo,
   BelongsToMany,
   Column,
   DataType,
+  ForeignKey,
   Model,
   Table,
 } from 'sequelize-typescript';
@@ -10,16 +24,12 @@ import { Author } from 'src/authors/models/author.model';
 import { author2book } from 'src/junction/author2book.model';
 import { tag2book } from 'src/junction/tag2book.model';
 import { Tag } from 'src/tags/models/tag.model';
-
-interface bookCreationAttributes {
-  name: string;
-  year: string;
-}
+import { TextType } from 'src/text-types/models/text-type.model';
+import { Mineral } from 'src/minerals/models/mineral.model';
 
 @ApiTags(`Книги`)
 @Table({ tableName: `books`, paranoid: true })
 export class Book extends Model {
-
   @ApiProperty({
     example: `Название книги или статьи`,
     description: `Название книги или статьи`,
@@ -30,6 +40,16 @@ export class Book extends Model {
     unique: true,
   })
   name: string;
+
+  @ApiProperty({ example: `1`, description: `ID типа` })
+  @ForeignKey(() => LangType)
+  @Column({ type: DataType.NUMBER })
+  langTypeId: number;
+
+  @ApiProperty({ example: `1`, description: `ID типа` })
+  @ForeignKey(() => TextType)
+  @Column({ type: DataType.NUMBER })
+  textTypeId: number;
 
   @ApiProperty({ example: `01.01.2022`, description: `Дата публикации` })
   @Column({ type: DataType.DATEONLY })
@@ -94,4 +114,28 @@ export class Book extends Model {
 
   @BelongsToMany(() => Tag, () => tag2book)
   tags: Tag[];
+
+  @BelongsTo(() => LangType)
+  langType: LangType;
+
+  @BelongsTo(() => TextType)
+  textType: TextType;
+
+  @BelongsToMany(() => Mineral, () => book2mineral)
+  mineral: Mineral[];
+
+  @BelongsToMany(() => Sample, () => book2sample)
+  sample: Sample[];
+
+  @BelongsToMany(() => Section, () => book2section)
+  section: Section[];
+
+  @BelongsToMany(() => Structure, () => book2structure)
+  structure: Structure[];
+
+  @BelongsToMany(() => Substance, () => book2substance)
+  substance: Substance[];
+
+  @BelongsToMany(() => Texture, () => book2texture)
+  texture: Texture[];
 }

@@ -27,11 +27,7 @@ export class User extends Model {
   id: number;
 
   @ApiProperty({ example: `admin`, description: `Логин пользователя` })
-  @Column({
-    type: DataType.STRING,
-    allowNull: false,
-    unique: true,
-  })
+  @Column({ type: DataType.STRING, allowNull: false, unique: true })
   login: string;
 
   @ApiProperty({ example: `Зубенко`, description: `Фамилия пользователя` })

@@ -1,5 +1,4 @@
 import {
-  BelongsToMany,
   Column,
   DataType,
   ForeignKey,
@@ -7,19 +6,21 @@ import {
   PrimaryKey,
   Table,
 } from 'sequelize-typescript';
-import { Role } from 'src/roles/models/role.model';
-import { User } from 'src/users/models/user.model';
+import { Book } from 'src/books/models/book.model';
+import { Section } from 'src/sections/models/section.model';
 
-@Table({ tableName: `role2user`, createdAt: false, updatedAt: false })
-export class role2user extends Model {
+@Table({ tableName: `book2section`, createdAt: false, updatedAt: false })
+export class book2section extends Model {
+  @PrimaryKey
+  @ForeignKey(() => Book)
+  @Column({ type: DataType.INTEGER })
+  bookId: number;
 
   @PrimaryKey
-  @ForeignKey(() => Role)
+  @ForeignKey(() => Section)
   @Column({ type: DataType.INTEGER })
-  userId: number;
+  sectionId: number;
 
-  @PrimaryKey
-  @ForeignKey(() => User)
-  @Column({ type: DataType.INTEGER })
-  roleId: number;
+  @Column({ type: DataType.TEXT })
+  notice: string;
 }

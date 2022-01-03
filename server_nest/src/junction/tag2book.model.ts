@@ -6,8 +6,8 @@ import {
   PrimaryKey,
   Table,
 } from 'sequelize-typescript';
-import { Book } from 'src/books/models/book.model';
 import { Tag } from 'src/tags/models/tag.model';
+import { Book } from 'src/books/models/book.model';
 
 @Table({ tableName: `tag2book`, createdAt: false, updatedAt: false })
 export class tag2book extends Model {

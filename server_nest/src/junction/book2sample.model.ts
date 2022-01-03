@@ -6,19 +6,21 @@ import {
   PrimaryKey,
   Table,
 } from 'sequelize-typescript';
-import { Role } from 'src/roles/models/role.model';
-import { User } from 'src/users/models/user.model';
+import { Book } from 'src/books/models/book.model';
+import { Sample } from 'src/samples/models/sample.model';
 
-@Table({ tableName: `role2user`, createdAt: false, updatedAt: false })
-export class role2user extends Model {
+@Table({ tableName: `book2sample`, createdAt: false, updatedAt: false })
+export class book2sample extends Model {
+  @PrimaryKey
+  @ForeignKey(() => Book)
+  @Column({ type: DataType.INTEGER })
+  bookId: number;
 
   @PrimaryKey
-  @ForeignKey(() => Role)
+  @ForeignKey(() => Sample)
   @Column({ type: DataType.INTEGER })
-  userId: number;
+  sampleId: number;
 
-  @PrimaryKey
-  @ForeignKey(() => User)
-  @Column({ type: DataType.INTEGER })
-  roleId: number;
+  @Column({ type: DataType.TEXT })
+  notice: string;
 }
