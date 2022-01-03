@@ -6,6 +6,10 @@ import {
   Model,
   Table,
 } from 'sequelize-typescript';
+import { Author } from 'src/authors/models/author.model';
+import { author2book } from 'src/junction/author2book.model';
+import { tag2book } from 'src/junction/tag2book.model';
+import { Tag } from 'src/tags/models/tag.model';
 
 interface bookCreationAttributes {
   name: string;
@@ -15,14 +19,6 @@ interface bookCreationAttributes {
 @ApiTags(`Книги`)
 @Table({ tableName: `books`, paranoid: true })
 export class Book extends Model {
-  @ApiProperty({ example: `1`, description: `Уникальный идентификатор` })
-  @Column({
-    type: DataType.INTEGER,
-    unique: true,
-    autoIncrement: true,
-    primaryKey: true,
-  })
-  id: number;
 
   @ApiProperty({
     example: `Название книги или статьи`,
@@ -93,6 +89,9 @@ export class Book extends Model {
   @Column({ type: DataType.TEXT })
   notice: string;
 
-  // @BelongsToMany(() => Role, () => role2user)
-  // roles: Role[];
+  @BelongsToMany(() => Author, () => author2book)
+  author: Author[];
+
+  @BelongsToMany(() => Tag, () => tag2book)
+  tags: Tag[];
 }

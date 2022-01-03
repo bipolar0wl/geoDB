@@ -58,7 +58,7 @@ export class User extends Model {
   email: string;
 
   @ApiProperty({ example: `qwerty`, description: `Пароль пользователя` })
-  @Column({ type: DataType.STRING })
+  @Column({ type: DataType.STRING, allowNull: false })
   password: string;
 
   @ApiProperty({ example: `(╭ರ_•́)`, description: `Заметка о пользователе` })

@@ -42,7 +42,7 @@ import { Book } from './books/models/book.model';
       models: [User, Role, role2user, Book],
     }),
     UsersModule,
-    TextTypesModule,
+    // TextTypesModule,
     LangTypesModule,
     SamplesModule,
     SectionsModule,
