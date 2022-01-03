@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-01-03T15:22:40.670Z" agent="5.0 (Windows)" etag="fET9pEoeTWcQbBfsGrEt" version="16.1.2" type="github">
+<mxfile host="app.diagrams.net" modified="2022-01-03T19:59:48.337Z" agent="5.0 (Windows)" etag="uETUgH0CZSLInfnfB3gs" version="16.1.2" type="github">
   <diagram id="zBVSdDIytzefxddwuVw0" name="Страница 1">
     <mxGraphModel dx="2523" dy="885" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -15,7 +15,7 @@
             <mxRectangle width="60" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="YbRmAdw3yqePJRn_-y0q-4" value="elementId" style="shape=partialRectangle;connectable=0;fillColor=#e3c800;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;fontStyle=5;overflow=hidden;fontColor=#000000;strokeColor=#B09500;" parent="YbRmAdw3yqePJRn_-y0q-2" vertex="1">
+        <mxCell id="YbRmAdw3yqePJRn_-y0q-4" value="substanceId" style="shape=partialRectangle;connectable=0;fillColor=#e3c800;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;fontStyle=5;overflow=hidden;fontColor=#000000;strokeColor=#B09500;" parent="YbRmAdw3yqePJRn_-y0q-2" vertex="1">
           <mxGeometry x="60" width="100" height="30" as="geometry">
             <mxRectangle width="100" height="30" as="alternateBounds" />
           </mxGeometry>
@@ -1527,7 +1527,7 @@
             <mxRectangle width="60" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="Jor3QwUjDlwGPBbev42B-36" value="elementId" style="shape=partialRectangle;connectable=0;fillColor=#e3c800;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;fontStyle=5;overflow=hidden;fontColor=#000000;strokeColor=#B09500;" parent="Jor3QwUjDlwGPBbev42B-34" vertex="1">
+        <mxCell id="Jor3QwUjDlwGPBbev42B-36" value="substanceId" style="shape=partialRectangle;connectable=0;fillColor=#e3c800;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;fontStyle=5;overflow=hidden;fontColor=#000000;strokeColor=#B09500;" parent="Jor3QwUjDlwGPBbev42B-34" vertex="1">
           <mxGeometry x="60" width="100" height="30" as="geometry">
             <mxRectangle width="100" height="30" as="alternateBounds" />
           </mxGeometry>
