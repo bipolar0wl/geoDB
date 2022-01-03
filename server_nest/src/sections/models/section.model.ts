@@ -1,9 +1,7 @@
-import { Substance } from 'src/substance/models/substance.model';
 import { Structure } from 'src/structures/models/structure.model';
 import { Texture } from 'src/textures/models/texture.model';
 import { Mineral } from 'src/minerals/models/mineral.model';
-import { substance2section } from './../../junction/substance2section.mode';
-import { structure2section } from './../../junction/structure2section.mode';
+import { structure2section } from '../../junction/structure2section.model';
 import { texture2section } from './../../junction/texture2section.model';
 import { mineral2section } from './../../junction/mineral2section.model';
 import { SectionPhoto } from './../../section-photo/models/section-photo.model';
@@ -28,12 +26,12 @@ import { Sample } from 'src/samples/models/sample.model';
 export class Section extends Model {
   @ApiProperty({ example: `1`, description: `ID образца` })
   @ForeignKey(() => Sample)
-  @Column({ type: DataType.NUMBER })
+  @Column({ type: DataType.INTEGER })
   sampleID: number;
 
   @ApiProperty({ example: `1`, description: `ID типа` })
   @ForeignKey(() => SectionType)
-  @Column({ type: DataType.NUMBER })
+  @Column({ type: DataType.INTEGER })
   typeId: number;
 
   @ApiProperty({ example: `а`, description: `Название шлифа` })
@@ -65,9 +63,6 @@ export class Section extends Model {
 
   @BelongsToMany(() => Structure, () => structure2section)
   structure: Structure[];
-
-  @BelongsToMany(() => Substance, () => substance2section)
-  substance: Substance[];
 
   @BelongsToMany(() => Book, () => book2section)
   book: Book[];

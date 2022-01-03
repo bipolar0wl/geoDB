@@ -18,7 +18,7 @@ export class SectionPhoto extends Model {
 
   @ApiProperty({ example: `1`, description: `ID шлифа` })
   @ForeignKey(() => Section)
-  @Column({ type: DataType.NUMBER })
+  @Column({ type: DataType.INTEGER })
   sectionId: number;
 
   @ApiProperty({

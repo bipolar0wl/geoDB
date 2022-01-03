@@ -21,7 +21,7 @@ export class SamplePhoto extends Model {
 
   @ApiProperty({ example: `1`, description: `ID образца` })
   @ForeignKey(() => Sample)
-  @Column({ type: DataType.NUMBER })
+  @Column({ type: DataType.INTEGER })
   sampleId: number;
 
   @ApiProperty({

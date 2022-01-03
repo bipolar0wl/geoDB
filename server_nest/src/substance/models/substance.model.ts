@@ -1,4 +1,4 @@
-import { substance2sample } from './../../junction/substance2sample.mode';
+import { substance2sample } from '../../junction/substance2sample.model';
 import { SampleAnalysis } from 'src/sample-analysis/models/sample-analysis.model';
 import { ApiProperty, ApiTags } from '@nestjs/swagger';
 import {
@@ -11,7 +11,7 @@ import {
 import { Book } from 'src/books/models/book.model';
 import { book2substance } from 'src/junction/book2substance.model';
 import { SectionAnalysis } from 'src/section-analysis/models/section-analysis.model';
-import { substance2section } from 'src/junction/substance2section.mode';
+import { substance2section } from 'src/junction/substance2section.model';
 
 @ApiTags(`Химический элемент`)
 @Table({ tableName: `substances` })

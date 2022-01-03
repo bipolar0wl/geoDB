@@ -1,6 +1,6 @@
 import { Substance } from 'src/substance/models/substance.model';
 import { Section } from 'src/sections/models/section.model';
-import { substance2section } from 'src/junction/substance2section.mode';
+import { substance2section } from 'src/junction/substance2section.model';
 import { ApiProperty, ApiTags } from '@nestjs/swagger';
 import {
   Column,
@@ -18,12 +18,12 @@ import { AnalysisType } from 'src/analysis-type/models/analysis-type.model';
 export class SectionAnalysis extends Model {
   @ApiProperty({ example: `1`, description: `ID шлифа` })
   @ForeignKey(() => Section)
-  @Column({ type: DataType.NUMBER })
+  @Column({ type: DataType.INTEGER })
   sectionID: number;
 
   @ApiProperty({ example: `1`, description: `ID типа` })
   @ForeignKey(() => AnalysisType)
-  @Column({ type: DataType.NUMBER })
+  @Column({ type: DataType.INTEGER })
   typeId: number;
 
   @ApiProperty({ example: `а`, description: `Название анализа` })

@@ -9,7 +9,7 @@ import {
 import { Book } from 'src/books/models/book.model';
 import { book2structure } from 'src/junction/book2structure.model';
 import { structure2sample } from 'src/junction/structure2sample.model';
-import { structure2section } from 'src/junction/structure2section.mode';
+import { structure2section } from 'src/junction/structure2section.model';
 import { Sample } from 'src/samples/models/sample.model';
 import { Section } from 'src/sections/models/section.model';
 

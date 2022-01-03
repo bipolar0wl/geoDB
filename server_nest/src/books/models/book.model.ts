@@ -43,12 +43,12 @@ export class Book extends Model {
 
   @ApiProperty({ example: `1`, description: `ID типа` })
   @ForeignKey(() => LangType)
-  @Column({ type: DataType.NUMBER })
+  @Column({ type: DataType.INTEGER })
   langTypeId: number;
 
   @ApiProperty({ example: `1`, description: `ID типа` })
   @ForeignKey(() => TextType)
-  @Column({ type: DataType.NUMBER })
+  @Column({ type: DataType.INTEGER })
   textTypeId: number;
 
   @ApiProperty({ example: `01.01.2022`, description: `Дата публикации` })

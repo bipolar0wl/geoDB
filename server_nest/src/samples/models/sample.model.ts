@@ -1,5 +1,4 @@
 import { structure2sample } from 'src/junction/structure2sample.model';
-import { Substance } from 'src/substance/models/substance.model';
 import { mineral2sample } from 'src/junction/mineral2sample.model';
 import { Mineral } from 'src/minerals/models/mineral.model';
 import { SamplePhoto } from 'src/sample-photo/models/sample-photo.model';
@@ -21,7 +20,6 @@ import { User } from 'src/users/models/user.model';
 import { Texture } from 'src/textures/models/texture.model';
 import { Structure } from 'src/structures/models/structure.model';
 import { texture2sample } from 'src/junction/texture2sample.model';
-import { substance2sample } from 'src/junction/substance2sample.mode';
 import { SampleAnalysis } from 'src/sample-analysis/models/sample-analysis.model';
 
 @ApiTags(`Образцы`)
@@ -29,7 +27,7 @@ import { SampleAnalysis } from 'src/sample-analysis/models/sample-analysis.model
 export class Sample extends Model {
   @ApiProperty({ example: `1`, description: `ID пользователя` })
   @ForeignKey(() => User)
-  @Column({ type: DataType.NUMBER })
+  @Column({ type: DataType.INTEGER })
   userId: number;
 
   @ApiProperty({ example: `NV-20-02`, description: `Название образца` })
@@ -61,9 +59,6 @@ export class Sample extends Model {
 
   @BelongsToMany(() => Structure, () => structure2sample)
   structure: Structure[];
-
-  @BelongsToMany(() => Substance, () => substance2sample)
-  substance: Substance[];
 
   @BelongsToMany(() => Book, () => book2sample)
   book: Book[];
