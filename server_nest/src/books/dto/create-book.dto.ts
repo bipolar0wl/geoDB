@@ -1,7 +1,7 @@
 import { ApiProperty, ApiTags } from '@nestjs/swagger';
 export class CreateBookDto {
   @ApiProperty({
-    example: `Название книги или статьи`,
+    example: `Капитал`,
     description: `Название книги или статьи`,
   })
   name: string;
@@ -12,20 +12,20 @@ export class CreateBookDto {
   @ApiProperty({ example: `1`, description: `ID типа` })
   textTypeId: number;
 
-  @ApiProperty({ example: `01.01.2022`, description: `Дата публикации` })
+  @ApiProperty({ example: `14.09.1867`, description: `Дата публикации` })
   year: Date;
 
-  @ApiProperty({ example: `Hobby World`, description: `Издательство` })
+  @ApiProperty({ example: `Карл Иога́нн Ка́утский`, description: `Издательство` })
   publisher: string;
 
   @ApiProperty({
-    example: `https://www.youtube.com/watch?v=dQw4w9WgXcQ`,
+    example: `https://www.marxists.org/russkij/marx/1867/capital_vol1/index.htm`,
     description: `Источник`,
   })
   source: string;
 
   @ApiProperty({
-    example: `sorry/for.what`,
+    example: `https://www.youtube.com/watch?v=dQw4w9WgXcQ`,
     description: `Адрес файла на сервере`,
   })
   ref: string;

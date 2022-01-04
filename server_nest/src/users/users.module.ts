@@ -11,5 +11,6 @@ import { role2user } from 'src/junction/role2user.model';
   imports: [SequelizeModule.forFeature([User, Sample, Role, role2user])],
   providers: [UsersService],
   controllers: [UsersController],
+  exports: [UsersService],
 })
 export class UsersModule {}

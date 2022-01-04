@@ -11,7 +11,7 @@ import { tag2book } from 'src/junction/tag2book.model';
 
 @ApiTags(`Теги`)
 @Table({ tableName: `tags` })
-export class Tag extends Model<Tag> {
+export class Tag extends Model {
   @ApiProperty({ example: `horny`, description: `Тег` })
   @Column({
     type: DataType.STRING,

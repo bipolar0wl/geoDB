@@ -14,7 +14,7 @@ import {
 import { AnalysisType } from 'src/analysis-type/models/analysis-type.model';
 
 @ApiTags(`Анализы шлифа`)
-@Table({ tableName: `sectionAnalysis` })
+@Table({ tableName: `sectionAnalysis`, paranoid: true })
 export class SectionAnalysis extends Model {
   @ApiProperty({ example: `1`, description: `ID шлифа` })
   @ForeignKey(() => Section)

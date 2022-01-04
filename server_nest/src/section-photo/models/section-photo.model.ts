@@ -10,7 +10,7 @@ import {
 import { Section } from 'src/sections/models/section.model';
 
 @ApiTags(`Фотографии шлифов`)
-@Table({ tableName: `sectionPhoto` })
+@Table({ tableName: `sectionPhoto`, paranoid: true })
 export class SectionPhoto extends Model {
   @ApiProperty({ example: `Снимок 1`, description: `Название фотографии` })
   @Column({ type: DataType.STRING, allowNull: false })

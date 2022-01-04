@@ -2,7 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateAuthorDto {
   @ApiProperty({
-    example: `Путин В.В.`,
+    example: `Карл Ге́нрих Маркс`,
     description: `ФИО автора`,
   })
   name: string;

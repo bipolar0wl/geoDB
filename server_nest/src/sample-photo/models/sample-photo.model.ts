@@ -10,7 +10,7 @@ import {
 import { Sample } from 'src/samples/models/sample.model';
 
 @ApiTags(`Фотографии образцов`)
-@Table({ tableName: `samplePhoto` })
+@Table({ tableName: `samplePhoto`, paranoid: true })
 export class SamplePhoto extends Model {
   @ApiProperty({
     example: `Снимок 1`,

@@ -22,7 +22,7 @@ import { book2section } from 'src/junction/book2section.model';
 import { Sample } from 'src/samples/models/sample.model';
 
 @ApiTags(`Шлифы`)
-@Table({ tableName: `sections` })
+@Table({ tableName: `sections`, paranoid: true })
 export class Section extends Model {
   @ApiProperty({ example: `1`, description: `ID образца` })
   @ForeignKey(() => Sample)

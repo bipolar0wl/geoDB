@@ -11,28 +11,30 @@ export class UsersService {
     private readonly userModel: typeof User,
   ) {}
 
-  create(createUserDto: CreateUserDto): Promise<User> {
-    return this.userModel.create(createUserDto);
+  async create(createUserDto: CreateUserDto): Promise<User> {
+    return await this.userModel.create(createUserDto);
   }
 
   async findAll(): Promise<User[]> {
-    return this.userModel.findAll();
+    return await this.userModel.findAll();
   }
 
-  findOne(id: string): Promise<User> {
-    return this.userModel.findByPk(id);
+  async findOne(id: string): Promise<User> {
+    return await this.userModel.findByPk(id);
   }
 
-  findBy(id: string): Promise<User> {
-    return this.userModel.findOne({
+  async findByLogin(login: string): Promise<User | undefined> {
+    return await this.userModel.findOne({
       where: {
-        id,
+        login,
       },
     });
   }
 
+  // async login()
+
   async update(updateUserDto: UpdateUserDto, id: string) {
-    return this.userModel.update(updateUserDto, { where: { id } });
+    return await this.userModel.update(updateUserDto, { where: { id } });
   }
 
   async remove(id: string): Promise<void> {

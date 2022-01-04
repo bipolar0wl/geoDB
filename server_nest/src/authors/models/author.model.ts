@@ -12,7 +12,7 @@ import { author2book } from 'src/junction/author2book.model';
 @ApiTags(`Авторы`)
 @Table({ tableName: `authors` })
 export class Author extends Model {
-  @ApiProperty({ example: `Путин В.В.`, description: `ФИО автора` })
+  @ApiProperty({ example: `Карл Ге́нрих Маркс`, description: `ФИО автора` })
   @Column({
     type: DataType.STRING,
     allowNull: false,

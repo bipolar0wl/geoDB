@@ -23,7 +23,7 @@ import { texture2sample } from 'src/junction/texture2sample.model';
 import { SampleAnalysis } from 'src/sample-analysis/models/sample-analysis.model';
 
 @ApiTags(`Образцы`)
-@Table({ tableName: `samples` })
+@Table({ tableName: `samples`, paranoid: true })
 export class Sample extends Model {
   @ApiProperty({ example: `1`, description: `ID пользователя` })
   @ForeignKey(() => User)

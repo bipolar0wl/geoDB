@@ -31,7 +31,7 @@ import { Mineral } from 'src/minerals/models/mineral.model';
 @Table({ tableName: `books`, paranoid: true })
 export class Book extends Model {
   @ApiProperty({
-    example: `Название книги или статьи`,
+    example: `Капитал`,
     description: `Название книги или статьи`,
   })
   @Column({
@@ -51,23 +51,23 @@ export class Book extends Model {
   @Column({ type: DataType.INTEGER })
   textTypeId: number;
 
-  @ApiProperty({ example: `01.01.2022`, description: `Дата публикации` })
+  @ApiProperty({ example: `14.09.1867`, description: `Дата публикации` })
   @Column({ type: DataType.DATEONLY })
   year: Date;
 
-  @ApiProperty({ example: `Hobby World`, description: `Издательство` })
+  @ApiProperty({ example: `Карл Иога́нн Ка́утский`, description: `Издательство` })
   @Column({ type: DataType.STRING })
   publisher: string;
 
   @ApiProperty({
-    example: `https://www.youtube.com/watch?v=dQw4w9WgXcQ`,
+    example: `https://www.marxists.org/russkij/marx/1867/capital_vol1/index.htm`,
     description: `Источник`,
   })
   @Column({ type: DataType.STRING })
   source: string;
 
   @ApiProperty({
-    example: `sorry/for.what`,
+    example: `https://www.youtube.com/watch?v=dQw4w9WgXcQ`,
     description: `Адрес файла на сервере`,
   })
   @Column({ type: DataType.STRING })
@@ -101,11 +101,17 @@ export class Book extends Model {
   @Column({ type: DataType.TEXT })
   APA: string;
 
-  @ApiProperty({ example: `(╭ರ_•́)`, description: `Описание` })
+  @ApiProperty({
+    example: `«Капита́л» — главный труд немецкого экономиста Карла Маркса по политической экономии, содержащий критический анализ капитализма.`,
+    description: `Описание`,
+  })
   @Column({ type: DataType.TEXT })
   description: string;
 
-  @ApiProperty({ example: `(╭ರ_•́)`, description: `Заметка` })
+  @ApiProperty({
+    example: `5 ф. ячменя, 5 ф. кукурузы, на 3 пенса селедок, на 1 пенс соли, на 1 пенс уксуса, на 2 пенса перцу и зелени, итого на сумму 20 3/4 пенса, получается суп на 64 человека, при этом при средних ценах хлеба стоимость этого может быть ещё понижена до 1/4 пенса на душу.`,
+    description: `Заметка`,
+  })
   @Column({ type: DataType.TEXT })
   notice: string;
 

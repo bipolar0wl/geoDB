@@ -14,7 +14,7 @@ import { AnalysisType } from 'src/analysis-type/models/analysis-type.model';
 import { substance2sample } from 'src/junction/substance2sample.model';
 
 @ApiTags(`Анализы образца`)
-@Table({ tableName: `sampleAnalysis` })
+@Table({ tableName: `sampleAnalysis`, paranoid: true })
 export class SampleAnalysis extends Model {
   @ApiProperty({ example: `1`, description: `ID образца` })
   @ForeignKey(() => Sample)
