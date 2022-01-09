@@ -28,9 +28,9 @@ export default function App() {
             indicatorColor="secondary"
           >
             <Tab
-              label="Минералы"
-              value="/minerals"
-              to="/minerals"
+              label="Образцы"
+              value="/samples"
+              to="/samples"
               component={Link}
             />
             <Tab
@@ -42,7 +42,6 @@ export default function App() {
             <Tab label="Книги" value="/books" to="/books" component={Link} />
           </Tabs>
         </Container>
-        {/* <ThemeSwitcher /> */}
       </AppBar>
       <Box
         sx={{
@@ -50,10 +49,7 @@ export default function App() {
           height: "100%",
         }}
       >
-        {/* <Container> */}
         <Outlet />
-        {/* <Loader /> */}
-        {/* </Container> */}
       </Box>
     </Box>
   );

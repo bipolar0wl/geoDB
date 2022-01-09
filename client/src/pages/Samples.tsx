@@ -1,18 +1,11 @@
-import React, { useEffect, useState } from "react";
-import {
-  DataGrid,
-  GridColDef,
-  GridValueGetterParams,
-  GridToolbar,
-  GridToolbarContainer,
-  GridToolbarExport,
-  gridClasses,
-  ruRU,
-} from "@mui/x-data-grid";
+import { useEffect, useState } from "react";
+import { GridColDef } from "@mui/x-data-grid";
 
-import Table from "../components/Table";
+import TableDataGrid from "../components/TableDataGrid";
+import SampleForm from "../components/SampleForm";
 
-import { fetchMaterialCompositions } from "../http/materialCompositionAPI";
+import { fetchSamples } from "../API/samples";
+import { Button } from "@mui/material";
 
 const columns: GridColDef[] = [
   { field: "id", headerName: "ID", width: 90, hide: true },
@@ -65,24 +58,30 @@ const columns: GridColDef[] = [
   },
 ];
 
-const Minerals = () => {
+const Samples = () => {
   const [rows, setRows] = useState([]);
   useEffect(() => {
-    fetchMaterialCompositions().then((response) => {
+    fetchSamples().then((response) => {
       setRows(response);
     });
   }, []);
 
   return (
-    <div style={{ height: 400, width: "100%" }}>
-      <Table
+    <>
+      <div>
+        <Button variant="contained" color="primary">
+          Добавить образец
+        </Button>
+      </div>
+      <SampleForm />
+      <TableDataGrid
         post={{
           columns: columns,
           rows: rows,
         }}
       />
-    </div>
+    </>
   );
 };
 
-export default Minerals;
+export default Samples;
