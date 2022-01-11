@@ -10,7 +10,7 @@ import { Book } from 'src/books/models/book.model';
 import { tag2book } from 'src/junction/tag2book.model';
 
 @ApiTags(`Теги`)
-@Table({ tableName: `tags` })
+@Table({ tableName: `tags`, updatedAt: false, createdAt: false })
 export class Tag extends Model {
   @ApiProperty({ example: `horny`, description: `Тег` })
   @Column({

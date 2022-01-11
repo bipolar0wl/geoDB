@@ -37,7 +37,7 @@ export class Book extends Model {
   @Column({
     type: DataType.STRING,
     allowNull: false,
-    unique: true,
+    // unique: true,
   })
   name: string;
 
@@ -51,7 +51,7 @@ export class Book extends Model {
   @Column({ type: DataType.INTEGER })
   textTypeId: number;
 
-  @ApiProperty({ example: `14.09.1867`, description: `Дата публикации` })
+  @ApiProperty({ example: `1867-09-14`, description: `Дата публикации` })
   @Column({ type: DataType.DATEONLY })
   year: Date;
 

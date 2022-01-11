@@ -4,7 +4,7 @@ import { SampleAnalysis } from 'src/sample-analysis/models/sample-analysis.model
 import { SectionAnalysis } from 'src/section-analysis/models/section-analysis.model';
 
 @ApiTags(`Виды анализов`)
-@Table({ tableName: `analysisType` })
+@Table({ tableName: `analysisType`, updatedAt: false, createdAt: false })
 export class AnalysisType extends Model<AnalysisType> {
   @ApiProperty({
     example: `ISP/РФА/TESCAN/Микрозонд/Лазерная абляция`,

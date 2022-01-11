@@ -1,11 +1,11 @@
 import { $host, $authHost } from "./index";
 
-export const fetchAnalysis = async () => {
+export const fetchSampleAnalysis = async () => {
   const { data } = await $host.get(`sample-analysis`);
   return data;
 };
 
-export const fetchOneAnalysis = async (id: number) => {
+export const fetchOneSampleAnalysis = async (id: number) => {
   const { data } = await $host.get(`sample-analysis/${id}`);
   return data;
 };

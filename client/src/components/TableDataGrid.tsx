@@ -9,6 +9,7 @@ import {
   GridToolbarExport,
   gridClasses,
   ruRU,
+  GridColumnMenu,
 } from "@mui/x-data-grid";
 
 import { ThemeProvider } from "@mui/material/styles";
@@ -21,11 +22,14 @@ const TableDataGrid = (props: any) => {
   return (
     <ThemeProvider theme={CustomTheme}>
       <DataGrid
+        showCellRightBorder
+        showColumnRightBorder
+        sortingMode="server"
+        paginationMode="server"
         rows={props.post.rows}
         columns={props.post.columns}
         pageSize={10}
         rowsPerPageOptions={[10]}
-        //   checkboxSelection
         localeText={RuRU.ruRU.props.MuiDataGrid.localeText}
         density={"compact"}
         disableSelectionOnClick
@@ -38,4 +42,4 @@ const TableDataGrid = (props: any) => {
   );
 };
 
-export default TableDataGrid
+export default TableDataGrid;

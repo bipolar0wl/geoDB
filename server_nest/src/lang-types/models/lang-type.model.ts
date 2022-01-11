@@ -3,7 +3,7 @@ import { Column, DataType, HasMany, Model, Table } from 'sequelize-typescript';
 import { Book } from 'src/books/models/book.model';
 
 @ApiTags(`Оригинал или перевод`)
-@Table({ tableName: `langTypes` })
+@Table({ tableName: `langTypes`, updatedAt: false, createdAt: false })
 export class LangType extends Model {
   @ApiProperty({
     example: `Оригинал/Перевод`,

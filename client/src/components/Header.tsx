@@ -1,6 +1,5 @@
 import { AppBar, Container, Tab, Tabs } from "@mui/material";
-import { Outlet, Link, useMatch, useLocation } from "react-router-dom";
-import React from "react";
+import { Link, useLocation } from "react-router-dom";
 
 const Header = () => {
   const location = useLocation();
@@ -13,6 +12,7 @@ const Header = () => {
           textColor="secondary"
           indicatorColor="secondary"
         >
+          <Tab label="Главная" value="/" to="/" component={Link} />
           <Tab
             label="Образцы"
             value="/samples"

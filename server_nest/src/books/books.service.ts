@@ -10,8 +10,9 @@ export class BooksService {
     private readonly bookModel: typeof Book,
   ) {}
 
-  create(createBookDto: CreateBookDto): Promise<Book> {
-    return this.bookModel.create(createBookDto);
+  create(dto: CreateBookDto): Promise<Book> {
+    console.log(dto);
+    return this.bookModel.create(dto);
   }
 
   async findAll(): Promise<Book[]> {

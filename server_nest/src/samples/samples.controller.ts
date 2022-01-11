@@ -13,6 +13,7 @@ export class SamplesController {
   @ApiResponse({ status: 200, type: Sample })
   @Post()
   create(@Body() dto: CreateSampleDto): Promise<Sample> {
+    console.log(dto)
     return this.samplesService.create(dto);
   }
 

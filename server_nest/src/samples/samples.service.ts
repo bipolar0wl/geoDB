@@ -11,6 +11,7 @@ export class SamplesService {
   ) {}
 
   async create(dto: CreateSampleDto): Promise<Sample> {
+    console.log(dto)
     return await this.sampleModel.create(dto);
   }
 

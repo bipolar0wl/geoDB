@@ -14,7 +14,7 @@ import { Sample } from 'src/samples/models/sample.model';
 import { mineral2section } from 'src/junction/mineral2section.model';
 
 @ApiTags(`Минералы`)
-@Table({ tableName: `minerals` })
+@Table({ tableName: `minerals`, updatedAt: false, createdAt: false })
 export class Mineral extends Model {
   @ApiProperty({ example: `Кварц`, description: `Минерал` })
   @Column({ type: DataType.STRING, allowNull: false, unique: true })

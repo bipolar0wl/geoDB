@@ -9,7 +9,7 @@ import {
 import { Section } from 'src/sections/models/section.model';
 
 @ApiTags(`Виды шлифов`)
-@Table({ tableName: `sectionTypes` })
+@Table({ tableName: `sectionTypes`, updatedAt: false, createdAt: false })
 export class SectionType extends Model {
   @ApiProperty({
     example: `Со стеклом/Без стекла/Аншлиф`,

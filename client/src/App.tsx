@@ -1,11 +1,9 @@
 import { useState } from "react";
-import "./App.scss";
 
 import AppRouter from "./components/AppRouter";
-import Theming from "./components/Theming";
 
-import LightTheme from "./components/Themes/LightTheme";
-import DarkTheme from "./components/Themes/DarkTheme";
+import DarkTheme from "./themes/DarkTheme";
+import LightTheme from "./themes/LightTheme";
 
 import { ThemeProvider } from "@mui/material/styles";
 import { Paper } from "@mui/material";

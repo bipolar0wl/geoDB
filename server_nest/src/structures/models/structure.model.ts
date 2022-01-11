@@ -14,7 +14,7 @@ import { Sample } from 'src/samples/models/sample.model';
 import { Section } from 'src/sections/models/section.model';
 
 @ApiTags(`Струкртура`)
-@Table({ tableName: `structures` })
+@Table({ tableName: `structures`, updatedAt: false, createdAt: false })
 export class Structure extends Model {
   @ApiProperty({ example: `а`, description: `Название структуры` })
   @Column({ type: DataType.STRING, allowNull: false, unique: true })

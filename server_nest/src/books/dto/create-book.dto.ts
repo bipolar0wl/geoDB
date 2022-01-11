@@ -12,7 +12,7 @@ export class CreateBookDto {
   @ApiProperty({ example: `1`, description: `ID типа` })
   textTypeId: number;
 
-  @ApiProperty({ example: `14.09.1867`, description: `Дата публикации` })
+  @ApiProperty({ example: `1867-09-14`, description: `Дата публикации` })
   year: Date;
 
   @ApiProperty({ example: `Карл Иога́нн Ка́утский`, description: `Издательство` })

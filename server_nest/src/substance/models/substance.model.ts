@@ -14,7 +14,7 @@ import { SectionAnalysis } from 'src/section-analysis/models/section-analysis.mo
 import { substance2section } from 'src/junction/substance2section.model';
 
 @ApiTags(`Химический элемент`)
-@Table({ tableName: `substances` })
+@Table({ tableName: `substances`, updatedAt: false, createdAt: false })
 export class Substance extends Model {
   @ApiProperty({ example: `Na2O`, description: `Формула элемента` })
   @Column({ type: DataType.STRING, allowNull: false, unique: true })

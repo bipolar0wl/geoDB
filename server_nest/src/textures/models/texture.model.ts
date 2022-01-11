@@ -14,7 +14,7 @@ import { Sample } from 'src/samples/models/sample.model';
 import { Section } from 'src/sections/models/section.model';
 
 @ApiTags(`Текстуры`)
-@Table({ tableName: `textures` })
+@Table({ tableName: `textures`, updatedAt: false, createdAt: false })
 export class Texture extends Model {
   @ApiProperty({
     example: `Пористая/Мелкопористая/Густопористая`,

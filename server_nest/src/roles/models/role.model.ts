@@ -10,7 +10,7 @@ import { role2user } from 'src/junction/role2user.model';
 import { User } from 'src/users/models/user.model';
 
 @ApiTags(`Роли`)
-@Table({ tableName: `roles` })
+@Table({ tableName: `roles`, updatedAt: false, createdAt: false })
 export class Role extends Model {
   @ApiProperty({ example: `Администратор`, description: `Роль пользователя` })
   @Column({ type: DataType.STRING, allowNull: false, unique: true })
