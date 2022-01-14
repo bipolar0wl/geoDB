@@ -1,5 +1,5 @@
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { DataGrid, ruRU } from "@mui/x-data-grid";
+import { createTheme } from "@mui/material/styles";
+import { ruRU } from "@mui/x-data-grid";
 import { ruRU as coreRuRU } from "@mui/material/locale";
 
 const Theme = createTheme(

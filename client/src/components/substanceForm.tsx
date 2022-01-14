@@ -8,7 +8,7 @@ interface IRow {
   name: string;
 }
 
-const substanceForm = () => {
+const SubstanceForm = () => {
   const [rows, setRows] = useState([]);
   useEffect(() => {
     fetchSubstance().then((response) => {
@@ -28,4 +28,4 @@ const substanceForm = () => {
   );
 };
 
-export default substanceForm;
+export default SubstanceForm;

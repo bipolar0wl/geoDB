@@ -1,20 +1,13 @@
 import React from "react";
 import {
   Button,
-  ButtonGroup,
   FormControl,
-  FormGroup,
-  FormLabel,
   Grid,
-  Input,
-  InputAdornment,
   InputLabel,
   MenuItem,
   Select,
   SelectChangeEvent,
-  Stack,
   TextField,
-  Typography,
 } from "@mui/material";
 
 const Book = () => {
@@ -23,8 +16,6 @@ const Book = () => {
   const handleChange = (event: SelectChangeEvent) => {
     setAge(event.target.value);
   };
-
-  const [value, setValue] = React.useState<Date | null>(new Date());
 
   return (
     <FormControl variant="standard" sx={{ minWidth: 120 }} fullWidth>

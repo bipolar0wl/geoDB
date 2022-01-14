@@ -1,7 +1,7 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import MainLayer from "./Layout/MainLayer";
+import HomePage from "../pages/HomePage";
 import Sample from "../pages/Sample";
 import Samples from "../pages/Samples";
 import Section from "../pages/Section";
@@ -11,21 +11,13 @@ import Analyzes from "../pages/Analyzes";
 import Book from "../pages/Book";
 import Books from "../pages/Books";
 import Noway from "../pages/Noway";
-import NavBar from "./NavBar";
-import Body from "./Body";
-import Main from "./Main";
-import Header from "./Header";
-import Footer from "./Footer";
-import SideBar from "./SideBar";
 
 export default function AppRouter() {
   return (
     <BrowserRouter>
-      <Header />
-      {/* <SideBar /> */}
       <Routes>
-        <Route path="/" element={<Body />}>
-          <Route path="/" element={<Main />} />
+        <Route path="/" element={<MainLayer />}>
+          <Route path="/" element={<HomePage />} />
           <Route path="samples">
             <Route path="" element={<Samples />} />
             <Route path="post/:id" element={<Sample />} />
@@ -48,7 +40,6 @@ export default function AppRouter() {
           <Route path="*" element={<Noway />} />
         </Route>
       </Routes>
-      <Footer />
     </BrowserRouter>
   );
 }
