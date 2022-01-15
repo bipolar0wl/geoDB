@@ -1,6 +1,6 @@
 import { Section } from 'src/sections/models/section.model';
-import { mineral2sample } from './../../junction/mineral2sample.model';
-import { book2mineral } from './../../junction/book2mineral.model';
+import { mineral2sample } from '../../junction/mineral2sample.model';
+import { book2mineral } from '../../junction/book2mineral.model';
 import { ApiProperty, ApiTags } from '@nestjs/swagger';
 import {
   Column,

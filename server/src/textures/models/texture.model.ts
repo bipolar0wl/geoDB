@@ -1,5 +1,5 @@
-import { texture2sample } from './../../junction/texture2sample.model';
-import { texture2section } from './../../junction/texture2section.model';
+import { texture2sample } from '../../junction/texture2sample.model';
+import { texture2section } from '../../junction/texture2section.model';
 import { ApiProperty, ApiTags } from '@nestjs/swagger';
 import {
   BelongsToMany,

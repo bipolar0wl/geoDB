@@ -2,10 +2,10 @@ import { Structure } from 'src/structures/models/structure.model';
 import { Texture } from 'src/textures/models/texture.model';
 import { Mineral } from 'src/minerals/models/mineral.model';
 import { structure2section } from '../../junction/structure2section.model';
-import { texture2section } from './../../junction/texture2section.model';
-import { mineral2section } from './../../junction/mineral2section.model';
-import { SectionPhoto } from './../../section-photo/models/section-photo.model';
-import { SectionType } from './../../section-type/models/section-type.model';
+import { texture2section } from '../../junction/texture2section.model';
+import { mineral2section } from '../../junction/mineral2section.model';
+import { SectionPhoto } from '../../section-photo/models/section-photo.model';
+import { SectionType } from '../../section-type/models/section-type.model';
 import { ApiProperty, ApiTags } from '@nestjs/swagger';
 import {
   BelongsTo,

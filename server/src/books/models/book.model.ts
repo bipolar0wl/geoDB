@@ -1,15 +1,15 @@
-import { Texture } from './../../textures/models/texture.model';
-import { Substance } from './../../substance/models/substance.model';
-import { Structure } from './../../structures/models/structure.model';
-import { Section } from './../../sections/models/section.model';
-import { Sample } from './../../samples/models/sample.model';
-import { book2texture } from './../../junction/book2texture.model';
-import { book2substance } from './../../junction/book2substance.model';
-import { book2structure } from './../../junction/book2structure.model';
-import { book2section } from './../../junction/book2section.model';
-import { book2sample } from './../../junction/book2sample.model';
-import { book2mineral } from './../../junction/book2mineral.model';
-import { LangType } from './../../lang-types/models/lang-type.model';
+import { Texture } from '../../textures/models/texture.model';
+import { Substance } from '../../substance/models/substance.model';
+import { Structure } from '../../structures/models/structure.model';
+import { Section } from '../../sections/models/section.model';
+import { Sample } from '../../samples/models/sample.model';
+import { book2texture } from '../../junction/book2texture.model';
+import { book2substance } from '../../junction/book2substance.model';
+import { book2structure } from '../../junction/book2structure.model';
+import { book2section } from '../../junction/book2section.model';
+import { book2sample } from '../../junction/book2sample.model';
+import { book2mineral } from '../../junction/book2mineral.model';
+import { LangType } from '../../lang-types/models/lang-type.model';
 import { ApiProperty, ApiTags } from '@nestjs/swagger';
 import {
   BelongsTo,

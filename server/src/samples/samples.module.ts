@@ -1,4 +1,4 @@
-import { SamplePhoto } from './../sample-photo/models/sample-photo.model';
+import { SamplePhoto } from '../sample-photo/models/sample-photo.model';
 import { Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { Sample } from './models/sample.model';
