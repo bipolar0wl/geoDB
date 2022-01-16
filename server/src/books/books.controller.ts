@@ -19,8 +19,9 @@ export class BooksController {
   @ApiOperation({ summary: `Просмотр всех книг` })
   @ApiResponse({ status: 200, type: Book })
   @Get()
-  findAll(): Promise<Book[]> {
-    return this.booksService.findAll()
+  // findAll(): Promise<Book[]> {
+  findAll() {
+    return this.booksService.findAll();
   }
 
   @ApiOperation({ summary: `Получить конкретной книги` })

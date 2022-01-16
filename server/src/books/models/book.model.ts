@@ -51,9 +51,9 @@ export class Book extends Model {
   @Column({ type: DataType.INTEGER })
   textTypeId: number;
 
-  @ApiProperty({ example: `1867-09-14`, description: `Дата публикации` })
-  @Column({ type: DataType.DATEONLY })
-  year: Date;
+  @ApiProperty({ example: `1867`, description: `Дата публикации` })
+  @Column({ type: DataType.INTEGER })
+  year: number;
 
   @ApiProperty({ example: `Карл Иога́нн Ка́утский`, description: `Издательство` })
   @Column({ type: DataType.STRING })

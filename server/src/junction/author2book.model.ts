@@ -21,4 +21,7 @@ export class author2book extends Model {
   @ForeignKey(() => Author)
   @Column({ type: DataType.INTEGER })
   authorId: number;
+
+  @Column({ type: DataType.INTEGER })
+  order: number;
 }

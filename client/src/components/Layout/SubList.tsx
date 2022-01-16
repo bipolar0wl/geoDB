@@ -57,22 +57,22 @@ const SubList = () => {
     {
       text: "Добавить образец",
       icon: <HomeIcon />,
-      ref: "/",
+      ref: "/samples/post",
     },
     {
       text: "Добавить шлиф",
       icon: <HomeIcon />,
-      ref: "/",
+      ref: "/sections/post",
     },
     {
       text: "Добавить анализ",
       icon: <HomeIcon />,
-      ref: "/",
+      ref: "/analyzes/post",
     },
     {
       text: "Добавить книгу",
       icon: <HomeIcon />,
-      ref: "/post/book",
+      ref: "/books/post",
     },
   ];
   const subPages = [

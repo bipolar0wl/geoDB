@@ -10,22 +10,15 @@ import {
   TableRow,
   Collapse,
   Button,
+  Stack,
+  IconButton,
 } from "@mui/material";
 
 import PreviewIcon from "@mui/icons-material/Preview";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
-function createData(
-  name: string,
-  calories: number,
-  fat: number,
-  carbs: number,
-  protein: number
-) {
-  return { name, calories, fat, carbs, protein };
-}
-
 export default function TableCustom(props: any) {
+  console.log(props.post.columns);
   console.log(props.post.rows);
   return (
     <TableContainer component={Paper}>
@@ -33,7 +26,7 @@ export default function TableCustom(props: any) {
         sx={{ minWidth: 650 }}
         stickyHeader
         size="small"
-        aria-label="simple table"
+        aria-label="table"
       >
         <TableHead>
           <TableRow>
@@ -46,7 +39,8 @@ export default function TableCustom(props: any) {
             {props.post.columns.map((column: any) => (
               <TableCell key={column.id} component="th">
                 <TextField
-                  id={`${column.id}Searh`}
+                  id={`${column.id}Search`}
+                  className="search"
                   size="small"
                   fullWidth
                   label={column.label}
@@ -55,7 +49,11 @@ export default function TableCustom(props: any) {
               </TableCell>
             ))}
             <TableCell align="center">
-              <Button variant="contained" size="small">
+              <Button
+                variant="contained"
+                size="small"
+                onClick={() => console.log(`Сброс фильтров`)}
+              >
                 Сброс
               </Button>
             </TableCell>
@@ -67,22 +65,31 @@ export default function TableCustom(props: any) {
               key={row.id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
-              {/* {row.map((column: any) => console.log(column))} */}
               {[`gay`, `sex`].map((id) => console.log(row))}
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              {/* <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell> */}
+              {props.post.columns.map((column: any) => (
+                <TableCell key={column.id}>{row[column.id]}</TableCell>
+              ))}
               <TableCell align="center">
-                <Button variant="contained" size="small">
-                  <PreviewIcon />
-                </Button>
-                <Button variant="contained" size="small">
-                  <DeleteForeverIcon />
-                </Button>
+                <Stack direction="row">
+                  <IconButton
+                    color="primary"
+                    aria-label="Посмотреть"
+                    component="span"
+                    size="small"
+                    onClick={() => console.log(row.id)}
+                  >
+                    <PreviewIcon />
+                  </IconButton>
+                  <IconButton
+                    color="primary"
+                    aria-label="Удалить"
+                    component="span"
+                    size="small"
+                    onClick={() => console.log(row.id)}
+                  >
+                    <DeleteForeverIcon />
+                  </IconButton>
+                </Stack>
               </TableCell>
             </TableRow>
           ))}

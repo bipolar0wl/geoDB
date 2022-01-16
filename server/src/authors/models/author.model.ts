@@ -18,7 +18,7 @@ export class Author extends Model {
     allowNull: false,
     unique: true,
   })
-  Author: string;
+  name: string;
 
   @BelongsToMany(() => Book, () => author2book)
   books: Book[];

@@ -4,26 +4,32 @@ import { fetchBooks } from "../API/books";
 import TableCustom from "../components/TableCustom";
 
 interface Data {
+  id: number;
   name: string;
-  calories: number;
-  carbs: number;
-  fat: number;
-  protein: number;
+  author: string;
+  year: number;
+  textType: string;
+  publisher: string;
+  doi: string;
 }
 
 function createData(
+  id: number,
   name: string,
-  calories: number,
-  fat: number,
-  carbs: number,
-  protein: number,
+  author: string,
+  year: number,
+  textType: string,
+  publisher: string,
+  doi: string
 ): Data {
   return {
+    id,
     name,
-    calories,
-    fat,
-    carbs,
-    protein,
+    author,
+    year,
+    textType,
+    publisher,
+    doi,
   };
 }
 interface HeadCell {
@@ -75,11 +81,24 @@ export default function Books() {
   const [rows, setRows] = useState([]);
   useEffect(() => {
     fetchBooks().then((response) => {
-      setRows(response);
+      let data: any = [];
+      response.map((row: any) =>
+        data.push(
+          createData(
+            row.id,
+            row.name,
+            row.author[0].name,
+            row.year,
+            row.textType.name,
+            row.publisher,
+            row.DOI
+          )
+        )
+      );
+      setRows(data);
     });
   }, []);
 
-  console.log(rows)
   return (
     <TableCustom
       post={{
