@@ -11,7 +11,12 @@ interface IData {
   name: string;
   section: { id: number; name: string };
   Substance: [
-    { id: number; name: string; substance2section: { percent: number } }
+    {
+      id: number;
+      name: string;
+      formula: string;
+      substance2section: { percent: number };
+    }
   ];
   analysisType: { id: number; name: string };
 }
@@ -21,20 +26,25 @@ const SectionAnalysis = () => {
   const page = location.pathname.split(`/`);
   const id = parseInt(page[page.length - 1]) || 0;
 
-  const [data, setData] = useState<IData>({} as IData);
+  const [data, setData] = useState<IData>({
+    id: 0,
+    name: "",
+    section: { id: 0, name: "" },
+    Substance: [
+      {
+        id: 0,
+        name: "",
+        formula: "",
+        substance2section: { percent: 0 },
+      },
+    ],
+    analysisType: { id: 0, name: "" },
+  });
   useEffect(() => {
     fetchOneSectionAnalysis(id).then((response) => {
-      console.log(response);
       setData(response);
     });
-  }, []);
-
-  const [possibleSubstances, setPossibleSubstances] = useState([]);
-  useEffect(() => {
-    fetchSubstances().then((response) => {
-      setPossibleSubstances(response);
-    });
-  }, []);
+  }, [data.name]);
 
   const [analysisType, setAnalysisType] = useState([]);
   useEffect(() => {
@@ -45,17 +55,26 @@ const SectionAnalysis = () => {
 
   if (data.name === null) return null;
 
-  console.log(data.analysisType);
+  const substances = data.Substance.map((substance) => {
+    return {
+      id: substance.id,
+      name: substance.name,
+      formula: substance.formula,
+      percent: substance.substance2section.percent,
+    };
+  });
+
   return (
     <Grid container spacing={2}>
       <Grid item xs={12} sm={7} md={8} lg={9} xl={10}>
         <TextField
           id="name"
           label="Название"
-          defaultValue={data.name}
           size="small"
           fullWidth
-        />
+        >
+          {data.name}
+        </TextField>
       </Grid>
       <Grid item xs={12} sm={5} md={4} lg={3} xl={2}>
         <Autocomplete
@@ -63,9 +82,9 @@ const SectionAnalysis = () => {
           size="small"
           freeSolo
           options={analysisType}
-          defaultValue={
-            data.analysisType ? analysisType[data.analysisType.id] : null
-          }
+          // defaultValue={
+          //   data.analysisType ? analysisType.id == data.analysisType.id : null
+          // }
           getOptionLabel={(option: any) => option.name}
           // options={analysisType.map((option: any) => option.name)}
           renderInput={(params) => (
@@ -82,7 +101,7 @@ const SectionAnalysis = () => {
         </Button>
       </Grid>
       <Grid item xs={12}>
-        <SubstanceList />
+        <SubstanceList substances={substances} />
       </Grid>
     </Grid>
   );

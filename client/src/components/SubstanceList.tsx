@@ -11,24 +11,31 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 import { fetchSubstances } from "../API/substances.api";
 import SubstanceRow from "../components/SubstanceRow";
+
 // * Интерфейс данных
 interface IProps {
+  id: number;
+  formula: string;
   name: string;
-  type: string;
+  percent: number;
 }
 
-const SubstanceList = (props: any) => {
-  const [possibleSubstances, setPossibleSubstances] = useState([]);
+const SubstanceList = (props: { substances: IProps[] }) => {
+  console.log(props);
+  const [variants, setVariants] = useState<any>([]);
   useEffect(() => {
     fetchSubstances().then((response) => {
-      setPossibleSubstances(response);
+      setVariants(response);
     });
   }, []);
-  const [substances, setSubstances] = useState<any>([]);
+  const [substances, setSubstances] = useState<any>(props.substances);
   // Добавление элемента
   const addNewSubstance = () => {
     const newSubstance = {
       id: Date.now(),
+      formula: "",
+      name: "",
+      substance2section: { percent: 0 },
     };
     setSubstances([...substances, newSubstance]);
   };
@@ -36,7 +43,6 @@ const SubstanceList = (props: any) => {
   const removeSubstance = (substance: any) => {
     setSubstances(substances.filter((p: any) => p.id !== substance.id));
   };
-  console.log(props);
   return (
     <Accordion>
       <AccordionSummary expandIcon={<ExpandMoreIcon />} id="panel1a-header">
@@ -55,7 +61,7 @@ const SubstanceList = (props: any) => {
             <Grid item xs={12} key={substance.id}>
               <SubstanceRow
                 number={index + 1}
-                post={possibleSubstances}
+                variants={variants}
                 substance={substance}
                 remove={removeSubstance}
               />

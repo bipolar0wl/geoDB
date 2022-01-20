@@ -14,7 +14,10 @@ function App() {
     theme === `light` ? setTheme(`dark`) : setTheme(`light`);
   return (
     <ThemeProvider theme={theme === `dark` ? LightTheme : DarkTheme}>
-      <Paper sx={{ height: "100vh", display: `flex`, flexDirection: `column` }}>
+      <Paper
+        sx={{ minHeight: "100vh", display: `flex`, flexDirection: `column` }}
+        square
+      >
         <AppRouter />
       </Paper>
     </ThemeProvider>

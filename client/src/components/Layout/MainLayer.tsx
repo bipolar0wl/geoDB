@@ -9,8 +9,8 @@ const MainLayer = () => {
       <NavBar>
         <Box
           sx={{
-            p: 2,
-            height: "100vh",
+            // p: 2,
+            // height: "100vh",
             display: "flex",
             flexDirection: "column",
             gap: 2,
