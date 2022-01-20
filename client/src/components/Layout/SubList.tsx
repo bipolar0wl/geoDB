@@ -21,9 +21,11 @@ import TextureIcon from "@mui/icons-material/Texture"; // Текстуры
 import CalendarViewWeekIcon from "@mui/icons-material/CalendarViewWeek"; // Структуры
 import BubbleChartIcon from "@mui/icons-material/BubbleChart"; // Элементы
 
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const SubList = () => {
+  const location = useLocation();
+  const curPage = location.pathname; // `/${location.pathname.split(`/`)[1]}`;
   let navigate = useNavigate();
 
   const mainPages = [
@@ -57,22 +59,27 @@ const SubList = () => {
     {
       text: "Добавить образец",
       icon: <HomeIcon />,
-      ref: "/samples/post",
+      ref: "/samples/new",
     },
     {
       text: "Добавить шлиф",
       icon: <HomeIcon />,
-      ref: "/sections/post",
+      ref: "/sections/new",
     },
     {
-      text: "Добавить анализ",
+      text: "Анализ образца",
       icon: <HomeIcon />,
-      ref: "/analyzes/post",
+      ref: "/analyzes/sampleAnalysis/new",
+    },
+    {
+      text: "Анализ шлифа",
+      icon: <HomeIcon />,
+      ref: "/analyzes/sectionAnalysis/new",
     },
     {
       text: "Добавить книгу",
       icon: <HomeIcon />,
-      ref: "/books/post",
+      ref: "/books/new",
     },
   ];
   const subPages = [
@@ -104,14 +111,20 @@ const SubList = () => {
     {
       text: "Список элементов",
       icon: <BubbleChartIcon />,
-      ref: "/elements",
+      ref: "/substances",
     },
   ];
+
   return (
     <>
       <List>
         {mainPages.map((page, index) => (
-          <ListItem button key={index} onClick={() => navigate(page.ref)}>
+          <ListItem
+            button
+            key={index}
+            onClick={() => navigate(page.ref)}
+            selected={page.ref == curPage}
+          >
             <ListItemIcon sx={{ pl: 1 }}>{page.icon}</ListItemIcon>
             <ListItemText primary={page.text} />
           </ListItem>
@@ -120,7 +133,12 @@ const SubList = () => {
       <Divider />
       <List>
         {addPages.map((page, index) => (
-          <ListItem button key={index} onClick={() => navigate(page.ref)}>
+          <ListItem
+            button
+            key={index}
+            onClick={() => navigate(page.ref)}
+            selected={page.ref == curPage}
+          >
             <ListItemIcon sx={{ pl: 1 }}>
               {index % 2 === 0 ? <AddIcon /> : <AddBoxIcon />}
             </ListItemIcon>
@@ -131,7 +149,12 @@ const SubList = () => {
       <Divider />
       <List>
         {subPages.map((page, index) => (
-          <ListItem button key={index} onClick={() => navigate(page.ref)}>
+          <ListItem
+            button
+            key={index}
+            onClick={() => navigate(page.ref)}
+            selected={page.ref == curPage}
+          >
             <ListItemIcon sx={{ pl: 1 }}>{page.icon}</ListItemIcon>
             <ListItemText primary={page.text} />
           </ListItem>

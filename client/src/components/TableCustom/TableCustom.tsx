@@ -16,6 +16,7 @@ import {
 
 import PreviewIcon from "@mui/icons-material/Preview";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import TableCustomFooter from "./TableCustomFooter";
 
 export default function TableCustom(props: any) {
   console.log(props.post.columns);
@@ -70,7 +71,11 @@ export default function TableCustom(props: any) {
                 <TableCell key={column.id}>{row[column.id]}</TableCell>
               ))}
               <TableCell align="center">
-                <Stack direction="row">
+                <Stack
+                  direction="row"
+                  justifyContent="center"
+                  alignItems="center"
+                >
                   <IconButton
                     color="primary"
                     aria-label="Посмотреть"
@@ -94,6 +99,7 @@ export default function TableCustom(props: any) {
             </TableRow>
           ))}
         </TableBody>
+        <TableCustomFooter />
       </Table>
     </TableContainer>
   );

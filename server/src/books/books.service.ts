@@ -4,6 +4,9 @@ import { InjectModel } from '@nestjs/sequelize';
 import { Book } from './models/book.model';
 import { TextType } from 'src/text-types/models/text-type.model';
 import { Author } from 'src/authors/models/author.model';
+import { Op } from 'sequelize';
+import sequelize from 'sequelize';
+import { Sequelize } from 'sequelize-typescript';
 
 @Injectable()
 export class BooksService {
@@ -16,15 +19,29 @@ export class BooksService {
     return this.bookModel.create(dto);
   }
 
-  // async findAll() {
+  // async findAll(query) {
   //   const [results, metadata] = await this.bookModel.sequelize.query(
-  //     'SELECT id, name,  FROM books',
+  //     'SELECT id, name FROM books',
   //   );
   //   return results;
   // }
 
-  async findAll(): Promise<Book[]> {
-    return this.bookModel.findAll({
+  async findAll(query) {
+    // for (const i in query) {
+    //   console.log(query)
+    // }
+    // console.log(query);
+    const { count, rows } = await this.bookModel.findAndCountAll({
+      where: {
+        // name: { [Op.iLike]: `%${query.name}%` || `` },
+        // // author: {},
+        // // year: { [Op.substring]: `` },
+        // // TextType: {},
+        // publisher: { [Op.iLike]: `%${query.publisher}%` || `` },
+        // // DOI: { [Op.iLike]: `%${query.DOI}%` || `` },
+        // // DOI: (query.publisher ? 1 : 0),
+        // DOI: { [Op.iLike]: `%${query.DOI}%` || ``},
+      },
       include: [
         {
           model: TextType,
@@ -43,6 +60,7 @@ export class BooksService {
       limit: 10,
       attributes: ['id', 'name', 'year', 'publisher', 'DOI'],
     });
+    return { data: rows, allCount: count };
   }
 
   findOne(id: string): Promise<Book> {

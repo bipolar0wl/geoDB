@@ -4,7 +4,7 @@ import { GridColDef } from "@mui/x-data-grid";
 import TableDataGrid from "../components/TableDataGrid";
 import SampleForm from "../components/SampleForm";
 
-import { fetchSamples } from "../API/samples";
+import { fetchSamples } from "../API/samples.api";
 import { Button } from "@mui/material";
 
 const columns: GridColDef[] = [

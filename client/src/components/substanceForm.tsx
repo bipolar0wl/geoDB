@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Autocomplete, TextField } from "@mui/material";
-import { fetchSubstance } from "../API/substance";
+import { fetchSubstances } from "../API/substances.api";
 
 interface IRow {
   id: number;
@@ -11,7 +11,7 @@ interface IRow {
 const SubstanceForm = () => {
   const [rows, setRows] = useState([]);
   useEffect(() => {
-    fetchSubstance().then((response) => {
+    fetchSubstances().then((response) => {
       setRows(response);
     });
   }, []);

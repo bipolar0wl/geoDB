@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { GridColDef } from "@mui/x-data-grid";
-import { fetchBooks } from "../API/books";
+import { fetchBooks } from "../API/books.api";
 import TableDataGrid from "../components/TableDataGrid";
-import TableCustom from "../components/TableCustom";
 
 const gcolumns: GridColDef[] = [
   { field: "id", headerName: "ID", width: 90, hide: true },

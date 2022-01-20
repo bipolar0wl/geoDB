@@ -1,6 +1,6 @@
 import { Autocomplete, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { fetchAnalysisType } from "../API/analysisType";
+import { fetchAnalysisType } from "../API/analysisType.api";
 
 interface IRow {
   id: number;

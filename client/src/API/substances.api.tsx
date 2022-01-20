@@ -1,6 +1,6 @@
 import { $host, $authHost } from "./index";
 
-export const fetchSubstance = async () => {
+export const fetchSubstances = async () => {
   const { data } = await $host.get(`substance`);
   return data;
 };

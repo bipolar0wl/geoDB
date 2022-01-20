@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 import { GridColDef } from "@mui/x-data-grid";
 import React, { useEffect, useState } from "react";
-import { fetchAnalysis } from "../API/analysis";
+import { fetchAnalysis } from "../API/analysis.api";
 import TableDataGrid from "../components/TableDataGrid";
 
 const columns: GridColDef[] = [

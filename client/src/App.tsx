@@ -13,7 +13,7 @@ function App() {
   const themeToggler = () =>
     theme === `light` ? setTheme(`dark`) : setTheme(`light`);
   return (
-    <ThemeProvider theme={theme === `light` ? LightTheme : DarkTheme}>
+    <ThemeProvider theme={theme === `dark` ? LightTheme : DarkTheme}>
       <Paper sx={{ height: "100vh", display: `flex`, flexDirection: `column` }}>
         <AppRouter />
       </Paper>
