@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, FC } from "react";
 import {
   Accordion,
   AccordionSummary,
@@ -12,42 +12,48 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { fetchSubstances } from "../API/substances.api";
 import SubstanceRow from "../components/SubstanceRow";
 
+import { ISubstance } from "../types/types";
+
 // * Интерфейс данных
 interface IProps {
-  id: number;
-  formula: string;
-  name: string;
-  percent: number;
+  substances: ISubstance[];
 }
 
-const SubstanceList = (props: { substances: IProps[] }) => {
-  console.log(props);
+const SubstanceList: FC<IProps> = ({ substances }) => {
+  // * Уже имеющиеся в базе элементы
   const [variants, setVariants] = useState<any>([]);
   useEffect(() => {
     fetchSubstances().then((response) => {
       setVariants(response);
     });
   }, []);
-  const [substances, setSubstances] = useState<any>(props.substances);
-  // Добавление элемента
+  // * Элементы для отображения в списке
+  let [elements, setElements] = useState(substances);
+  // ! Добавление элемента
   const addNewSubstance = () => {
     const newSubstance = {
       id: Date.now(),
       formula: "",
       name: "",
-      substance2section: { percent: 0 },
+      percent: 0,
     };
-    setSubstances([...substances, newSubstance]);
+    setElements([...elements, newSubstance]);
   };
-  // Удаление элемента
+  // ! Удаление элемента
   const removeSubstance = (substance: any) => {
-    setSubstances(substances.filter((p: any) => p.id !== substance.id));
+    setElements(elements.filter((p: any) => p.id !== substance.id));
   };
+  console.log(elements);
+  console.log(substances);
+  const sumPercent = substances.reduce((sum: number, current) => {
+    return sum + Number(current.percent);
+  }, 0);
   return (
     <Accordion>
       <AccordionSummary expandIcon={<ExpandMoreIcon />} id="panel1a-header">
         <Typography>
-          Элементы (Всего элементов: {substances.length}, общий процент: {0})
+          Элементы (Всего элементов: {elements.length}, общий процент:{" "}
+          {sumPercent.toFixed(2)}%)
         </Typography>
       </AccordionSummary>
       <AccordionDetails>
@@ -57,7 +63,7 @@ const SubstanceList = (props: { substances: IProps[] }) => {
               Добавить элемент
             </Button>
           </Grid>
-          {substances.map((substance: any, index: number) => (
+          {elements.map((substance: any, index: number) => (
             <Grid item xs={12} key={substance.id}>
               <SubstanceRow
                 number={index + 1}

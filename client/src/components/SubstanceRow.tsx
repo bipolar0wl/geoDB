@@ -1,15 +1,11 @@
-import React from "react";
+import { FC } from "react";
 import { Grid, Autocomplete, Button, TextField } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { ISubstance } from "../types/types";
 
 interface IProps {
   number: number;
-  substance: {
-    id: number;
-    formula: string;
-    name: string;
-    percent: number;
-  };
+  substance: ISubstance;
   variants: [
     {
       id: number;
@@ -20,34 +16,35 @@ interface IProps {
   remove: Function;
 }
 
-const SubstanceRow = (props: IProps) => {
-  console.log(props.variants);
-  console.log(props.substance);
+const SubstanceRow: FC<IProps> = ({ number, substance, variants, remove }) => {
   return (
     <Grid container spacing={2}>
       <Grid item xs={12} sm={4} md={5} lg={5} xl={5}>
         <Autocomplete
           freeSolo
-          options={props.variants}
-          // defaultValue={
-          //   data.analysisType ? analysisType.id == data.analysisType.id : null
-          // }
-          getOptionLabel={(option: any) => option.formula}
-          // options={props.post.map((option: any) => option.formula)}
+          options={variants.map((option: any) => option.formula)}
+          defaultValue={substance.formula}
           renderInput={(params) => (
-            <TextField
-              {...params}
-              label={`Элемент ${props.number}`}
-              size="small"
-            />
+            <TextField {...params} label={`Элемент ${number}`} size="small" />
           )}
         />
+        {/* <Autocomplete
+          freeSolo
+          options={variants}
+          defaultValue={
+            data.analysisType ? analysisType.id == data.analysisType.id : null
+          }
+          getOptionLabel={(option: any) => option.formula}
+          renderInput={(params) => (
+            <TextField {...params} label={`Элемент ${number}`} size="small" />
+          )}
+        /> */}
       </Grid>
       <Grid item xs={12} sm={5} md={5} lg={5} xl={6}>
         <TextField
           label="Процент содержания"
           size="small"
-          defaultValue={props.substance.percent}
+          defaultValue={substance.percent}
           fullWidth
           onChange={(event) => console.log(event.target.value)}
         />
@@ -57,7 +54,7 @@ const SubstanceRow = (props: IProps) => {
           variant="outlined"
           startIcon={<DeleteIcon />}
           fullWidth
-          onClick={() => props.remove(props.substance)}
+          onClick={() => remove(substance)}
         >
           Удалить
         </Button>

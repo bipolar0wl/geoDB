@@ -7,6 +7,5 @@ export const fetchSectionAnalysis = async () => {
 
 export const fetchOneSectionAnalysis = async (id: number) => {
   const { data } = await $host.get(`section-analysis/${id}`);
-  console.log(data)
   return data;
 };

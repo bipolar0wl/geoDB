@@ -1,10 +1,11 @@
 import { Grid, TextField, Button, Autocomplete } from "@mui/material";
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { fetchAnalysisType } from "../API/analysisType.api";
 import { fetchOneSectionAnalysis } from "../API/sectionAnalysis.api";
 import { fetchSubstances } from "../API/substances.api";
 import SubstanceList from "../components/SubstanceList";
+import { ISection, IAnalysisType } from "../types/types";
 
 interface IData {
   id: number;
@@ -21,7 +22,7 @@ interface IData {
   analysisType: { id: number; name: string };
 }
 
-const SectionAnalysis = () => {
+const SectionAnalysis: FC = () => {
   const location = useLocation();
   const page = location.pathname.split(`/`);
   const id = parseInt(page[page.length - 1]) || 0;
@@ -40,53 +41,78 @@ const SectionAnalysis = () => {
     ],
     analysisType: { id: 0, name: "" },
   });
+  // * Название анализа
+  const [analysis, setAnalysis] = useState("");
+  // * Название шлифа
+  const [section, setSection] = useState<ISection>({ id: 0, name: "" });
+  // * Тип анализа
+  const [analysisType, setAnalysisType] = useState<IAnalysisType>({
+    id: 0,
+    name: "",
+  });
+  // * Элементы в анализе
+  const [substances, setSubstances] = useState([]);
   useEffect(() => {
     fetchOneSectionAnalysis(id).then((response) => {
-      setData(response);
+      setAnalysis(response.name);
+      setAnalysisType({
+        id: response.analysisType.id,
+        name: response.analysisType.name,
+      });
+      setSection({ id: response.section.id, name: response.section.name });
+      const data = response.Substance.map((substance: any) => {
+        return {
+          id: substance.id,
+          name: substance.name,
+          formula: substance.formula,
+          percent: substance.substance2section.percent,
+        };
+      });
+      setSubstances(data);
     });
-  }, [data.name]);
-
-  const [analysisType, setAnalysisType] = useState([]);
+  }, []);
+  // * Известные типы анализов
+  const [analysisTypes, setAnalysisTypes] = useState([]);
   useEffect(() => {
     fetchAnalysisType().then((response) => {
-      setAnalysisType(response);
+      setAnalysisTypes(response);
     });
   }, []);
 
   if (data.name === null) return null;
 
-  const substances = data.Substance.map((substance) => {
-    return {
-      id: substance.id,
-      name: substance.name,
-      formula: substance.formula,
-      percent: substance.substance2section.percent,
-    };
-  });
+  // const substances = data.Substance.map((substance) => {
+  //   return {
+  //     id: substance.id,
+  //     name: substance.name,
+  //     formula: substance.formula,
+  //     percent: substance.substance2section.percent,
+  //   };
+  // });
 
   return (
     <Grid container spacing={2}>
+      <Grid item xs={12}>
+        <TextField id="parent" label="Название шлифа" size="small" fullWidth>
+          {section.name}
+        </TextField>
+      </Grid>
       <Grid item xs={12} sm={7} md={8} lg={9} xl={10}>
         <TextField
           id="name"
-          label="Название"
+          label="Название анализа"
           size="small"
           fullWidth
-        >
-          {data.name}
-        </TextField>
+          value={analysis}
+        />
       </Grid>
       <Grid item xs={12} sm={5} md={4} lg={3} xl={2}>
         <Autocomplete
           id="analysisType"
           size="small"
           freeSolo
-          options={analysisType}
-          // defaultValue={
-          //   data.analysisType ? analysisType.id == data.analysisType.id : null
-          // }
-          getOptionLabel={(option: any) => option.name}
-          // options={analysisType.map((option: any) => option.name)}
+          options={analysisTypes.map((option: any) => option.name)}
+          value={analysisType.name}
           renderInput={(params) => (
             <TextField {...params} label="Тип анализа" />
           )}
@@ -94,6 +120,23 @@ const SectionAnalysis = () => {
             console.log(JSON.stringify(newValue, null, " "));
           }}
         />
+        {/* <Autocomplete
+          id="analysisType"
+          size="small"
+          options={analysisType}
+          // defaultValue={
+          //   data.analysisType ? analysisType.id == data.analysisType.id : null
+          // }
+          getOptionLabel={(option: any) => option.name}
+          freeSolo
+          // options={analysisType.map((option: any) => option.name)}
+          renderInput={(params) => (
+            <TextField {...params} label="Тип анализа" />
+          )}
+          onChange={(event, newValue) => {
+            console.log(JSON.stringify(newValue, null, " "));
+          }}
+        /> */}
       </Grid>
       <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
         <Button variant="outlined">
