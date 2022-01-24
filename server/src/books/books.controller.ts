@@ -12,12 +12,13 @@ export class BooksController {
   @ApiOperation({ summary: `Создание книги или статьи` })
   @ApiResponse({ status: 200, type: Book })
   @Post()
-  create(@Body() dto: CreateBookDto): Promise<Book> {
+  // create(@Body() dto: CreateBookDto): Promise<Book> {
+  create(@Body() dto) {
     return this.booksService.create(dto);
   }
 
   @ApiOperation({ summary: `Просмотр всех книг` })
-  @ApiResponse({ status: 200})
+  @ApiResponse({ status: 200 })
   @Get()
   // findAll(): Promise<Book[]> {
   findAll(@Query() query) {

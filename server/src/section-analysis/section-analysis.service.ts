@@ -14,8 +14,11 @@ export class SectionAnalysisService {
     private readonly sectionAnalysisModel: typeof SectionAnalysis,
   ) {}
 
-  create(dto: CreateSectionAnalysisDto): Promise<SectionAnalysis> {
-    return this.sectionAnalysisModel.create(dto);
+  // create(dto: CreateSectionAnalysisDto): Promise<SectionAnalysis> {
+  create(dto: CreateSectionAnalysisDto) {
+    console.log(dto);
+    return dto;
+    // return this.sectionAnalysisModel.create(dto);
   }
 
   async findAll(): Promise<SectionAnalysis[]> {

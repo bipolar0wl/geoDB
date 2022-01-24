@@ -11,7 +11,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 
-import { Outlet, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Header from "./Header";
 import SubList from "./SubList";
 
@@ -67,7 +67,6 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 }));
 
 export default function NavBar(props: any) {
-  const location = useLocation();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 

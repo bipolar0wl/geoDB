@@ -14,7 +14,8 @@ export class SectionAnalysisController {
   @ApiOperation({ summary: `Добавление анализа шлифа` })
   @ApiResponse({ status: 200, type: SectionAnalysis })
   @Post()
-  create(@Body() dto: CreateSectionAnalysisDto): Promise<SectionAnalysis> {
+  // create(@Body() dto: CreateSectionAnalysisDto): Promise<SectionAnalysis> {
+  create(@Body() dto: CreateSectionAnalysisDto) {
     return this.sectionAnalysisService.create(dto);
   }
 

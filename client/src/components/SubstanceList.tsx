@@ -17,9 +17,10 @@ import { ISubstance } from "../types/types";
 // * Интерфейс данных
 interface IProps {
   substances: ISubstance[];
+  setSubstances: Function;
 }
 
-const SubstanceList: FC<IProps> = ({ substances }) => {
+const SubstanceList: FC<IProps> = ({ substances, setSubstances }) => {
   // * Уже имеющиеся в базе элементы
   const [variants, setVariants] = useState<any>([]);
   useEffect(() => {
@@ -27,8 +28,6 @@ const SubstanceList: FC<IProps> = ({ substances }) => {
       setVariants(response);
     });
   }, []);
-  // * Элементы для отображения в списке
-  let [elements, setElements] = useState(substances);
   // ! Добавление элемента
   const addNewSubstance = () => {
     const newSubstance = {
@@ -37,14 +36,16 @@ const SubstanceList: FC<IProps> = ({ substances }) => {
       name: "",
       percent: 0,
     };
-    setElements([...elements, newSubstance]);
+    setSubstances([...substances, newSubstance]);
   };
   // ! Удаление элемента
   const removeSubstance = (substance: any) => {
-    setElements(elements.filter((p: any) => p.id !== substance.id));
+    setSubstances(substances.filter((p: any) => p.id !== substance.id));
   };
-  console.log(elements);
-  console.log(substances);
+  const updateSubstances = (substance: any) => {
+    setSubstances([...substances]);
+  };
+  // * Общий процент содержания
   const sumPercent = substances.reduce((sum: number, current) => {
     return sum + Number(current.percent);
   }, 0);
@@ -52,9 +53,12 @@ const SubstanceList: FC<IProps> = ({ substances }) => {
     <Accordion>
       <AccordionSummary expandIcon={<ExpandMoreIcon />} id="panel1a-header">
         <Typography>
-          Элементы (Всего элементов: {elements.length}, общий процент:{" "}
-          {sumPercent.toFixed(2)}%)
+          Элементы (Всего элементов: {substances.length}, общий процент:&nbsp;
         </Typography>
+        <Typography style={sumPercent > 100 ? { color: "red" } : {}}>
+          {sumPercent.toFixed(2)}%
+        </Typography>
+        <Typography>)</Typography>
       </AccordionSummary>
       <AccordionDetails>
         <Grid container spacing={1}>
@@ -63,13 +67,14 @@ const SubstanceList: FC<IProps> = ({ substances }) => {
               Добавить элемент
             </Button>
           </Grid>
-          {elements.map((substance: any, index: number) => (
+          {substances.map((substance: any, index: number) => (
             <Grid item xs={12} key={substance.id}>
               <SubstanceRow
                 number={index + 1}
                 variants={variants}
                 substance={substance}
                 remove={removeSubstance}
+                updateSubstances={updateSubstances}
               />
             </Grid>
           ))}

@@ -1,10 +1,14 @@
 import { Grid, TextField, Button, Autocomplete } from "@mui/material";
 import { FC, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { fetchAnalysisType } from "../API/analysisType.api";
-import { fetchOneSectionAnalysis } from "../API/sectionAnalysis.api";
-import { fetchSubstances } from "../API/substances.api";
 import SubstanceList from "../components/SubstanceList";
+
+import { fetchAnalysisType } from "../API/analysisType.api";
+import {
+  addSectionAnalysis,
+  fetchOneSectionAnalysis,
+} from "../API/sectionAnalysis.api";
+
 import { ISection, IAnalysisType } from "../types/types";
 
 interface IData {
@@ -81,15 +85,6 @@ const SectionAnalysis: FC = () => {
 
   if (data.name === null) return null;
 
-  // const substances = data.Substance.map((substance) => {
-  //   return {
-  //     id: substance.id,
-  //     name: substance.name,
-  //     formula: substance.formula,
-  //     percent: substance.substance2section.percent,
-  //   };
-  // });
-
   return (
     <Grid container spacing={2}>
       <Grid item xs={12}>
@@ -139,12 +134,15 @@ const SectionAnalysis: FC = () => {
         /> */}
       </Grid>
       <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
-        <Button variant="outlined">
+        <Button
+          variant="outlined"
+          onClick={() => addSectionAnalysis(analysis, analysisType, substances)}
+        >
           {id ? "Сохранить изменения" : "Добавить анализ шлифа"}
         </Button>
       </Grid>
       <Grid item xs={12}>
-        <SubstanceList substances={substances} />
+        <SubstanceList substances={substances} setSubstances={setSubstances} />
       </Grid>
     </Grid>
   );

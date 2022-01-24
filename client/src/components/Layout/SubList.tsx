@@ -123,7 +123,7 @@ const SubList = () => {
             button
             key={index}
             onClick={() => navigate(page.ref)}
-            selected={page.ref == curPage}
+            selected={page.ref === curPage}
           >
             <ListItemIcon sx={{ pl: 1 }}>{page.icon}</ListItemIcon>
             <ListItemText primary={page.text} />
@@ -137,7 +137,7 @@ const SubList = () => {
             button
             key={index}
             onClick={() => navigate(page.ref)}
-            selected={page.ref == curPage}
+            selected={page.ref === curPage}
           >
             <ListItemIcon sx={{ pl: 1 }}>
               {index % 2 === 0 ? <AddIcon /> : <AddBoxIcon />}
@@ -153,7 +153,7 @@ const SubList = () => {
             button
             key={index}
             onClick={() => navigate(page.ref)}
-            selected={page.ref == curPage}
+            selected={page.ref === curPage}
           >
             <ListItemIcon sx={{ pl: 1 }}>{page.icon}</ListItemIcon>
             <ListItemText primary={page.text} />
