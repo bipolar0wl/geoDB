@@ -90,7 +90,7 @@ export class BooksService {
       ],
       offset: 0,
       limit: 10,
-      attributes: ['id', 'name', 'year', 'publisher', 'DOI'],
+      attributes: ['id', 'name', 'year', 'publisher', 'doi'],
     });
     return { data: rows, allCount: count };
   }

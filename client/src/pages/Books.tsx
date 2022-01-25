@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { GridColDef } from "@mui/x-data-grid";
 import { fetchBooks } from "../API/books.api";
 import TableCustom from "../components/TableCustom/TableCustom";
+import { IHeadCell } from "../types/types";
 
 interface Data {
   id: number;
@@ -32,15 +33,9 @@ function createData(
     doi,
   };
 }
-interface HeadCell {
-  disablePadding: boolean;
-  id: string;
-  label: string;
-  numeric: boolean;
-}
 
 export default function Books() {
-  const columns: readonly HeadCell[] = [
+  const columns: readonly IHeadCell[] = [
     {
       id: "name",
       numeric: false,
@@ -78,31 +73,38 @@ export default function Books() {
       label: "DOI",
     },
   ];
+  const [page, setPage] = useState(1);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [allCount, setAllCount] = useState(0);
   const [rows, setRows] = useState([]);
   useEffect(() => {
     fetchBooks().then((response) => {
       let data: any = [];
-      response.map((row: any) =>
+      response.data.map((row: any) =>
         data.push(
           createData(
             row.id,
             row.name,
-            row.author[0].name,
+            row.author[0] ? row.author[0].name : "",
             row.year,
-            row.textType.name,
+            row.textType ? row.textType.name : "",
             row.publisher,
-            row.DOI
+            row.doi
           )
         )
       );
       setRows(data);
+      setAllCount(response.allCount);
     });
   }, []);
 
   return (
     <TableCustom
       post={{
-        page: 1,
+        page: page,
+        rowsPerPage: rowsPerPage,
+        allCount: allCount,
+        columnsGroups: null,
         columns: columns,
         rows: rows,
       }}

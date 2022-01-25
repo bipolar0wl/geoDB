@@ -1,75 +1,107 @@
 import React from "react";
 import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
 
-const columns: GridColDef[] = [
-    {
-        field: "id",
-        headerName: "№",
-        width: 150,
-        editable: true,
-    },
-    {
-        field: "firstName",
-        headerName: "Минеральный состав",
-        width: 250,
-        editable: true,
-    },
-    {
-        field: "lastName",
-        headerName: "Текстура",
-        width: 150,
-        editable: true,
-    },
-    {
-        field: "age",
-        headerName: "Структура",
-        description: "This column has a value getter and is not sortable.",
-        sortable: false,
-        width: 160,
-        valueGetter: (params: GridValueGetterParams) =>
-            `${params.getValue(params.id, "firstName") || ""} ${
-                params.getValue(params.id, "lastName") || ""
-            }`,
-    },
-    // {
-    //   field: 'fullName',
-    //   headerName: 'Текстура',
-    //   type: 'number',
-    //   width: 110,
-    //   editable: true,
-    // },
-];
-
-const rows = [
-    { id: 1, lastName: "Snow", firstName: "Jon", age: 35 },
-    { id: 2, lastName: "Lannister", firstName: "Cersei", age: 42 },
-    { id: 3, lastName: "Lannister", firstName: "Jaime", age: 45 },
-    { id: 4, lastName: "Stark", firstName: "Arya", age: 16 },
-    { id: 5, lastName: "Targaryen", firstName: "Daenerys", age: null },
-    { id: 6, lastName: "Melisandre", firstName: null, age: 150 },
-    { id: 7, lastName: "Clifford", firstName: "Ferrara", age: 44 },
-    { id: 8, lastName: "Frances", firstName: "Rossini", age: 36 },
-    { id: 9, lastName: "Roxie", firstName: "Harvey", age: 65 },
-];
+interface Data {
+    id: number;
+    name: string;
+    minerals: IBase[];
+    texture: number;
+    structure: string;
+    sections: IBase[];
+    analyzes: IBase[];
+  }
+  
+  function createData(
+    id: number,
+    name: string,
+    minerals: IBase[],
+    texture: number,
+    structure: string,
+    analyzes: IBase[]
+  ): Data {
+    return {
+      id,
+      name,
+      minerals,
+      texture,
+      structure,
+      analyzes,
+    };
+  }
 
 export default function Sections() {
-    return (
-        <div
-            style={{
-                height: 400,
-                width: "100%",
-            }}
-        >
-            <DataGrid
-                rows={rows}
-                columns={columns}
-                pageSize={10}
-                rowsPerPageOptions={[10]}
-                autoPageSize={true}
-                rowHeight={34}
-                // checkboxSelection
-                disableSelectionOnClick
-            />
-        </div>
-    );
+    const columns: readonly IHeadCell[] = [
+        {
+          id: "name",
+          numeric: false,
+          disablePadding: true,
+          label: "№",
+        },
+        {
+          id: "minerals",
+          numeric: false,
+          disablePadding: false,
+          label: "Минеральный состав",
+        },
+        {
+          id: "texture",
+          numeric: true,
+          disablePadding: false,
+          label: "Текстура",
+        },
+        {
+          id: "structure",
+          numeric: true,
+          disablePadding: false,
+          label: "structure",
+        },
+        {
+          id: "analyzes",
+          numeric: true,
+          disablePadding: false,
+          label: "Анализы",
+        },
+      ];
+      const [page, setPage] = useState(1);
+      const [rowsPerPage, setRowsPerPage] = useState(10);
+      const [allCount, setAllCount] = useState(0);
+      const [rows, setRows] = useState([]);
+      useEffect(() => {
+        fetchSamples().then((response) => {
+          let data: any = [];
+          response.data.map((row: any) =>
+            data.push(
+              createData(
+                row.id,
+                row.name,
+                row.author[0] ? row.author[0].name : "",
+                row.year,
+                row.textType ? row.textType.name : "",
+                row.publisher,
+                row.doi
+              )
+            )
+          );
+          setRows(data);
+          setAllCount(response.allCount);
+        });
+      }, []);
+      
+      const [columnsGroups, setColumnsGroups] = useState([
+        {length: 4, label: ""},
+        {length: 3, label: "Анализы"},
+      ])
+    
+      return (
+        <TableCustom
+          post={{
+            page: page,
+            rowsPerPage: rowsPerPage,
+            allCount: allCount,
+            columnsGroups: null,
+            columns: columns,
+            rows: rows,
+          }}
+        />
+      );
 }

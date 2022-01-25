@@ -1,86 +1,122 @@
 import { useEffect, useState } from "react";
-import { GridColDef } from "@mui/x-data-grid";
 
 import TableDataGrid from "../components/TableDataGrid";
-import SampleForm from "../components/SampleForm";
 
 import { fetchSamples } from "../API/samples.api";
-import { Button } from "@mui/material";
+import TableCustom from "../components/TableCustom/TableCustom";
+import { IBase, IHeadCell } from "../types/types";
 
-const columns: GridColDef[] = [
-  { field: "id", headerName: "ID", width: 90, hide: true },
-  {
-    field: "name",
-    headerName: "№",
-    width: 150,
-    editable: true,
-  },
-  {
-    field: "minerals",
-    headerName: "Минеральный состав",
-    flex: 1,
-    editable: true,
-  },
-  {
-    field: "texture",
-    headerName: "Текстура",
-    type: "string",
-    width: 150,
-    editable: true,
-  },
-  {
-    field: "structure",
-    headerName: "Структура",
-    type: "string",
-    width: 150,
-    editable: true,
-  },
-  {
-    field: "sectionWithGlass",
-    headerName: "Шлифы со стеклом",
-    type: "number",
-    width: 200,
-    filterable: false,
-  },
-  {
-    field: "sectionWithoutGlass",
-    headerName: "Шлифы без стекла",
-    type: "number",
-    width: 200,
-    filterable: false,
-  },
-  {
-    field: "polishedSection",
-    headerName: "Аншлиф",
-    type: "number",
-    width: 200,
-    filterable: false,
-  },
-];
+interface Data {
+  id: number;
+  name: string;
+  minerals: IBase[];
+  texture: number;
+  structure: string;
+  sections: IBase[];
+  analyzes: IBase[];
+}
+
+function createData(
+  id: number,
+  name: string,
+  minerals: IBase[],
+  texture: number,
+  structure: string,
+  sections: IBase[],
+  analyzes: IBase[]
+): Data {
+  return {
+    id,
+    name,
+    minerals,
+    texture,
+    structure,
+    sections,
+    analyzes,
+  };
+}
 
 const Samples = () => {
+  const columns: readonly IHeadCell[] = [
+    {
+      id: "name",
+      numeric: false,
+      disablePadding: true,
+      label: "№",
+    },
+    {
+      id: "minerals",
+      numeric: false,
+      disablePadding: false,
+      label: "Минеральный состав",
+    },
+    {
+      id: "texture",
+      numeric: true,
+      disablePadding: false,
+      label: "Текстура",
+    },
+    {
+      id: "structure",
+      numeric: true,
+      disablePadding: false,
+      label: "structure",
+    },
+    {
+      id: "sections",
+      numeric: true,
+      disablePadding: false,
+      label: "Шлифы",
+    },
+    {
+      id: "analyzes",
+      numeric: true,
+      disablePadding: false,
+      label: "Анализы",
+    },
+  ];
+  const [page, setPage] = useState(1);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [allCount, setAllCount] = useState(0);
   const [rows, setRows] = useState([]);
   useEffect(() => {
     fetchSamples().then((response) => {
-      setRows(response);
+      let data: any = [];
+      response.data.map((row: any) =>
+        data.push(
+          createData(
+            row.id,
+            row.name,
+            row.author[0] ? row.author[0].name : "",
+            row.year,
+            row.textType ? row.textType.name : "",
+            row.publisher,
+            row.doi
+          )
+        )
+      );
+      setRows(data);
+      setAllCount(response.allCount);
     });
   }, []);
+  
+  const [columnsGroups, setColumnsGroups] = useState([
+    {length: 4, label: ""},
+    {length: 3, label: "Шлифы"},
+    {length: 3, label: "Анализы"},
+  ])
 
   return (
-    <>
-      <div>
-        <Button variant="contained" color="primary">
-          Добавить образец
-        </Button>
-      </div>
-      <SampleForm />
-      <TableDataGrid
-        post={{
-          columns: columns,
-          rows: rows,
-        }}
-      />
-    </>
+    <TableCustom
+      post={{
+        page: page,
+        rowsPerPage: rowsPerPage,
+        allCount: allCount,
+        columnsGroups: null,
+        columns: columns,
+        rows: rows,
+      }}
+    />
   );
 };
 

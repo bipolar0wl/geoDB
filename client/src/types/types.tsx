@@ -1,3 +1,10 @@
+// * Колонка таблицы
+export interface IHeadCell {
+  disablePadding: boolean;
+  id: string;
+  label: string;
+  numeric: boolean;
+}
 // * ID и наименования
 export interface IBase {
   id?: number | null;
