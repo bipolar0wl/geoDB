@@ -20,6 +20,7 @@ import {
 import { Book } from 'src/books/models/book.model';
 import { book2section } from 'src/junction/book2section.model';
 import { Sample } from 'src/samples/models/sample.model';
+import { SectionAnalysis } from 'src/section-analysis/models/section-analysis.model';
 
 @ApiTags(`Шлифы`)
 @Table({ tableName: `sections`, paranoid: true })
@@ -54,6 +55,9 @@ export class Section extends Model {
 
   @HasMany(() => SectionPhoto)
   sectionPhoto: SectionPhoto;
+
+  @HasMany(() => SectionAnalysis)
+  sectionAnalysis: SectionAnalysis;
 
   @BelongsToMany(() => Mineral, () => mineral2section)
   mineral: Mineral[];

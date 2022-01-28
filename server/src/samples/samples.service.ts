@@ -22,11 +22,19 @@ export class SamplesService {
     return await this.sampleModel.create(dto);
   }
 
-  async findAll(): Promise<Sample[]> {
-    return await this.sampleModel.findAll({
+  async findAll() {
+    const { count, rows } = await this.sampleModel.findAndCountAll({
       order: [[`id`, `desc`]],
+      include: [
+        { model: Mineral, attributes: ['id', 'name'] },
+        { model: Texture, attributes: ['id', 'name'] },
+        { model: Structure, attributes: ['id', 'name'] },
+        { model: Section, attributes: ['id', 'name'] },
+        { model: SampleAnalysis, attributes: ['id', 'name'] },
+      ],
       paranoid: false,
     });
+    return { data: rows, allCount: count };
   }
 
   async findOne(id: string): Promise<Sample> {

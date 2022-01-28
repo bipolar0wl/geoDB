@@ -19,11 +19,18 @@ export class SectionsService {
     console.log(dto);
     return await this.sectionModel.create(dto);
   }
-  async findAll(): Promise<Section[]> {
-    return await this.sectionModel.findAll({
+  async findAll() {
+    const { count, rows } = await this.sectionModel.findAndCountAll({
+      include: [
+        { model: Mineral, attributes: ['id', 'name'] },
+        { model: Texture, attributes: ['id', 'name'] },
+        { model: Structure, attributes: ['id', 'name'] },
+        { model: SectionAnalysis, attributes: ['id', 'name'] },
+      ],
       order: [[`id`, `desc`]],
       paranoid: false,
     });
+    return { data: rows, allCount: count };
   }
 
   async findOne(id: string): Promise<Section> {

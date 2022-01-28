@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { GridColDef } from "@mui/x-data-grid";
 import { fetchBooks } from "../API/books.api";
 import TableCustom from "../components/TableCustom/TableCustom";
 import { IHeadCell } from "../types/types";

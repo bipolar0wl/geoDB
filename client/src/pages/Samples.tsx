@@ -60,7 +60,7 @@ const Samples = () => {
       id: "structure",
       numeric: true,
       disablePadding: false,
-      label: "structure",
+      label: "Структура",
     },
     {
       id: "sections",
@@ -87,11 +87,11 @@ const Samples = () => {
           createData(
             row.id,
             row.name,
-            row.author[0] ? row.author[0].name : "",
-            row.year,
-            row.textType ? row.textType.name : "",
-            row.publisher,
-            row.doi
+            row.minerals,
+            row.texture ? row.texture.name : "",
+            row.structure ? row.structure.name : "",
+            row.sections,
+            row.analyzes
           )
         )
       );
@@ -99,12 +99,12 @@ const Samples = () => {
       setAllCount(response.allCount);
     });
   }, []);
-  
+
   const [columnsGroups, setColumnsGroups] = useState([
-    {length: 4, label: ""},
-    {length: 3, label: "Шлифы"},
-    {length: 3, label: "Анализы"},
-  ])
+    { length: 4, label: "" },
+    { length: 3, label: "Шлифы" },
+    { length: 3, label: "Анализы" },
+  ]);
 
   return (
     <TableCustom

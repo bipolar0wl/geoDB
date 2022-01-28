@@ -14,7 +14,9 @@ export const addAnalysis = async (
 };
 
 export const fetchAnalysis = async () => {
-  const { data } = await $host.get(`sample-analysis`);
+  let data: any = [];
+  data = data.concat(await $host.get(`sample-analysis`));
+  data = data.concat(await $host.get(`section-analysis`));
   return data;
 };
 

@@ -9,18 +9,18 @@ import { SamplesService } from './samples.service';
 export class SamplesController {
   constructor(private readonly samplesService: SamplesService) {}
 
-  @ApiOperation({ summary: `Создание пользователя` })
+  @ApiOperation({ summary: `Добавление образца` })
   @ApiResponse({ status: 200, type: Sample })
   @Post()
   create(@Body() dto: CreateSampleDto): Promise<Sample> {
-    console.log(dto)
+    console.log(dto);
     return this.samplesService.create(dto);
   }
 
   @ApiOperation({ summary: `Получить все образцы` })
   @ApiResponse({ status: 200, type: Sample })
   @Get()
-  findAll(): Promise<Sample[]> {
+  findAll() {
     return this.samplesService.findAll();
   }
 
